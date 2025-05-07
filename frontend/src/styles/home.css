@@ -1,0 +1,293 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Layout principal */
+#content {
+    display: flex;
+    height: 100vh;
+    /* ocupa a altura total da tela */
+}
+
+/* Sidebars */
+.side-bar {
+    width: 20%;
+    background-color: #D9D9D9;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+}
+
+.menu.button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 190px;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+}
+
+/* Conteúdo central */
+#main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    /*padding: 10px;*/
+}
+
+/* Menu de perfil */
+#profile-menu {
+    width: 100%;
+    height: 67px;
+    /*flex-shrink: 0;*/
+    background: #F9DBDB;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    padding: 18px 18px 18px 18px;
+}
+
+.profile.button {
+    border-radius: 10px;
+}
+
+.profile.button.bell {}
+
+.profile.button.cog {}
+
+.profile.button.avatar {}
+
+#feed {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Área para postagem */
+#post-section {
+    display: flex;
+    background-color: #6EBED0;
+    height: 150px;
+    justify-content: space-around;
+}
+
+/*#feed-profile-picture {
+    display: flex;
+    width: 20%;
+    height: auto;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}*/
+
+.feed-profile-picture {
+    display: flex;
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+
+#feed-profile-picture img {
+    width: 35%;
+    height: auto;
+    border-radius: 50%;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    background-color: #FFF;
+}
+
+#send-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.feed-content {
+    width: 60%;
+}
+
+#post-text {
+    width: 100%;
+    height: 60%;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    background-color: #FFF;
+    border: none;
+}
+
+#post-text input {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    background-color: #FFF;
+    border: none;
+    /*outline: none;*/
+}
+
+#post-aux {
+    width: 20%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+.feed-aux {}
+
+#post-aux button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 20%;
+    border-radius: 50px;
+    background-color: #FACC15;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.feed-options img {
+    width: 20px;
+    height: auto;
+    margin: 0 7px 0 7px;
+}
+
+
+
+
+
+
+/* Feed de posts */
+#feed {
+    flex: 1;
+    background-color: #FFF;
+    overflow-y: auto;
+}
+
+#feed>div {
+    margin: 10px 10px 10px 10px;
+}
+
+/* Container de todos os posts */
+#post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Um único post */
+.post {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background-color: yellow;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 10px 10px 10px 10px;
+}
+
+/* Imagem de perfil */
+.feed-profile-picture img {
+    width: 35%;
+    height: auto;
+    border-radius: 50%;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    background-color: #FFF;
+}
+
+/* Conteúdo principal do post */
+.feed-content {
+    flex: 1;
+}
+
+/* Nome do autor */
+.feed-name {
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+}
+
+/* Texto do post */
+.feed-text {
+    margin: 4px 0 12px;
+    color: #555;
+}
+
+/* Área com ícones (curtir, comentar, compartilhar) */
+.feed-options {
+    display: flex;
+    gap: 16px;
+}
+
+.feed-options .img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.feed-options .img:hover {
+    opacity: 1;
+}
+
+/* Informações adicionais (ex: tempo) */
+.feed-aux {
+    margin-top: auto;
+    font-size: 12px;
+    color: #999;
+    padding-left: 64px;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    /* Alinha com o conteúdo após o avatar */
+}
+
+.button {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    opacity: 0.6;
+}
+
+.menu.button:hover {
+    background-color: #636363;
+}
+
+.profile.button:hover {
+    background-color: #636363;
+}

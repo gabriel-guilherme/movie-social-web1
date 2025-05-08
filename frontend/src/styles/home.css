@@ -61,6 +61,7 @@ html {
 
 /* Menu de perfil */
 #profile-menu {
+    
     width: 100%;
     height: 67px;
     /*flex-shrink: 0;*/
@@ -79,9 +80,13 @@ html {
 
 .profile.button.cog {}
 
-.profile.button.avatar {}
+.profile.button.avatar {
+    width: 40px;
+    /* border: 3px solid red; */
+}
 
 #feed {
+    
     display: flex;
     flex-direction: column;
     gap: 10px;

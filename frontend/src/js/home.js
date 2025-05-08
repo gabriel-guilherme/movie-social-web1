@@ -1,21 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const logoutBtn = document.getElementById("logout-btn");
+  const logoutBtn = document.getElementById("logout-btn");
 
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-            window.location.href = "/login.html";
-        });
-    }
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      window.location.href = "/login.html";
+    });
+  }
 
-    // Código opcional: Exibir saudação com nome e sobrenome
-    const urlParams = new URLSearchParams(window.location.search);
-    const nome = urlParams.get('nome');
-    const sobrenome = urlParams.get('sobrenome');
-    const welcomeText = document.getElementById('welcome-text');
+  const urlParams = new URLSearchParams(window.location.search);
+  const nome = urlParams.get('nome');
+  const sobrenome = urlParams.get('sobrenome');
+  const welcomeText = document.getElementById('welcome-text');
 
-    if (nome && sobrenome && welcomeText) {
-        welcomeText.textContent = `Bem-vindo(a), ${nome} ${sobrenome}!`;
-    }
+  if (nome && sobrenome && welcomeText) {
+    welcomeText.textContent = `Bem-vindo(a), ${nome} ${sobrenome}!`;
+  }
 });
 
 const postInput = document.querySelector('#post-text input');
@@ -23,16 +22,16 @@ const postButton = document.querySelector('#post-submit');
 const postList = document.querySelector('#post-list');
 
 postButton.addEventListener('click', () => {
-    const text = postInput.value.trim();
+  const text = postInput.value.trim();
 
-    if (text === '') {
-        return;
-    }
+  if (text === '') {
+    return;
+  }
 
-    const postDiv = document.createElement('div');
-    postDiv.className = 'post';
+  const postDiv = document.createElement('div');
+  postDiv.className = 'post';
 
-    postDiv.innerHTML = `
+  postDiv.innerHTML = `
       <div class="feed-profile-picture">
         <img src="../img/svg/user.svg" />
       </div>
@@ -50,9 +49,7 @@ postButton.addEventListener('click', () => {
       </div>
     `;
 
-    // Adiciona o novo post no topo
-    postList.prepend(postDiv);
+  postList.prepend(postDiv);
 
-    // Limpa o campo de texto
-    postInput.value = '';
+  postInput.value = '';
 });

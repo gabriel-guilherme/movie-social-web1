@@ -6,33 +6,32 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 
-// Middleware para processar formulários
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// Servir arquivos estáticos (CSS, JS, imagens, etc.)
+
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'src')));
 
-// Caminho completo do arquivo de usuários
 const usersFilePath = path.join(__dirname, 'users.json');
 
-// Rota para register.html
+
 app.get('/register.html', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'src', 'pages', 'register.html'));
 });
 
-// Rota para login.html
+
 app.get('/login.html', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'src', 'pages', 'login.html'));
 });
 
-// Rota para home.html
+
 app.get('/home.html', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'src', 'pages', 'home.html'));
 });
 
-// Registro de novo usuário
+
 app.post('/register', (req, res) => {
     const {
         "first-name": firstName,
@@ -72,7 +71,7 @@ app.post('/register', (req, res) => {
         '&sobrenome=' + encodeURIComponent(lastName));
 });
 
-// Login de usuário
+
 app.post('/login', (req, res) => {
     const {
         email,
@@ -99,7 +98,7 @@ app.post('/login', (req, res) => {
     }
 });
 
-// Inicializa servidor
+
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

@@ -128,3 +128,8 @@ html {
     background-color: #007bff;
     color: white;
 }
+
+#error-msg {
+    color: red;
+    margin-top: 10px
+}

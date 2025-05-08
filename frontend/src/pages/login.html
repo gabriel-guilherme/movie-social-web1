@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="..\styles\login.css" />
+    <link rel="stylesheet" href="../styles/login.css" />
   </head>
   <body>
     <div class="container">
@@ -18,15 +18,27 @@
           <div class="form-header">
             <h2>Log In</h2>
           </div>
-          <form>
+          <form method="POST" action="/login">
             <div class="input-group">
               <label for="email">Endereço de e-mail</label>
-              <input type="email" id="email" placeholder="email@email.com" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="email@email.com"
+                required
+              />
             </div>
 
             <div class="input-group">
-              <label for="senha">Senha</label>
-              <input type="password" id="senha" placeholder="Senha" />
+              <label for="password">Senha</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Senha"
+                required
+              />
               <small>A senha deve possuir pelo menos 8 dígitos</small>
             </div>
 
@@ -41,11 +53,20 @@
             <button type="submit" class="btn-login">Log In</button>
           </form>
 
+          <div id="error-msg"></div>
+
           <div class="bottom-button">
-            <button class="btn-outline">Criar conta</button>
+            <button
+              class="btn-outline"
+              onclick="window.location.href='/register.html'"
+            >
+              Criar conta
+            </button>
           </div>
         </div>
       </div>
     </div>
+
+    <script src="../js/login.js"></script>
   </body>
 </html>

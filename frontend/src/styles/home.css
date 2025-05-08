@@ -41,6 +41,10 @@ html {
     height: 250px;
 }
 
+.img.menu {
+    width: 25px;
+}
+
 .menu.button {
     display: flex;
     align-items: center;
@@ -67,13 +71,20 @@ html {
     /*flex-shrink: 0;*/
     background: #F9DBDB;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     gap: 10px;
     padding: 18px 18px 18px 18px;
 }
 
+#section1 {}
+
+#section2 {
+    width: 100px;
+}
+
 .profile.button {
     border-radius: 10px;
+    width: 30%;
 }
 
 .profile.button.bell {}
@@ -136,6 +147,9 @@ html {
 
 .feed-content {
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 #post-text {
@@ -145,6 +159,19 @@ html {
     padding: 10px 10px 10px 10px;
     background-color: #FFF;
     border: none;
+}
+
+/* Para o campo de texto do post */
+#post-text textarea {
+    width: 100%;
+    resize: none;
+    font-size: 1rem;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 #post-text input {
@@ -218,6 +245,11 @@ html {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     padding: 10px 10px 10px 10px;
+    max-height: 200px;
+    max-width: 1200px;
+    /* Defina a altura máxima do post */
+    overflow-y: auto;
+    /* Barra de rolagem vertical quando necessário */
 }
 
 /* Imagem de perfil */
@@ -230,11 +262,6 @@ html {
     background-color: #FFF;
 }
 
-/* Conteúdo principal do post */
-.feed-content {
-    flex: 1;
-}
-
 /* Nome do autor */
 .feed-name {
     font-weight: 600;
@@ -244,8 +271,16 @@ html {
 
 /* Texto do post */
 .feed-text {
-    margin: 4px 0 12px;
-    color: #555;
+    white-space: normal;
+    /* Permite a quebra de linha no texto */
+    word-wrap: break-word;
+    /* Quebra palavras longas para caber no espaço */
+    overflow-wrap: break-word;
+    /* Para garantir que palavras longas quebrem corretamente */
+    max-width: 100%;
+    /* Garantir que o conteúdo ocupe toda a largura do post */
+    line-height: 1.5;
+    /* Aumenta o espaçamento entre linhas para melhor legibilidade */
 }
 
 /* Área com ícones (curtir, comentar, compartilhar) */

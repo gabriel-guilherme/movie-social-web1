@@ -1,0 +1,115 @@
+
+#side-bar-right {
+    background-color: #325A7E;
+    height: 1000px;
+    display: table;
+}
+
+.right-content-container {
+    justify-content: center;
+    border: 0px solid red;
+}
+
+.pesquisa {
+    border-radius: 45px;
+    background-color: #d9d9d9;
+    color: #000000a8;
+    height: 45px;
+    width: auto;
+    margin: 10px;
+    padding: 10px;
+
+
+}
+
+.form-pesquisa input[type="text"] {
+    border: none;
+    background-color: #d9d9d9;
+    margin-left: 12px;
+    margin-top: 5px;
+    font-size: 16px;
+    
+}
+
+.form-pesquisa input[type="text"]::placeholder {
+    color: #325A7E;
+    
+}
+
+.icone-pesquisa {
+    float:right;
+    margin-right: 11px;
+    
+}
+
+.icone-pesquisa img{
+    float:right;
+    margin-right: 10px;
+    margin-top: 4px;
+    width: 20px;
+    height: 20px;    
+}
+
+#em-alta {
+
+    background-color: 325A7E;
+    width: 98%;
+    /* background-color: #325A7E; */
+
+}
+
+.trending {
+    
+    background-color: #E5EFFF;
+    border-radius: 10px;
+        
+    margin: 10px;
+}
+
+.trending-proxima {
+    
+    color: #325A7E;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+
+    /* border: 1px solid blue; */
+    
+}
+
+.titulo-trending {
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px;
+
+    /* border: 1px solid red; */
+}
+
+.numero-interacoes{
+    color: #325A7E;
+    opacity: 0.7;
+    font-size: 14px;
+    padding: 10px;
+
+    /* border: 1px solid green; */
+}
+
+.opcoes-trending img{
+
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+    float: right;
+    
+}
+
+/* PROPAGANDAS? */
+/* 
+#marketing {
+   
+}
+
+.ad {
+    
+} */

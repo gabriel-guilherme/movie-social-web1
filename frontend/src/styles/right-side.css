@@ -1,7 +1,6 @@
-
 #side-bar-right {
     background-color: #325A7E;
-    height: 1000px;
+    height: 100%;
     display: table;
 }
 
@@ -28,26 +27,26 @@
     margin-left: 12px;
     margin-top: 5px;
     font-size: 16px;
-    
+    width: 70px;
 }
 
 .form-pesquisa input[type="text"]::placeholder {
     color: #325A7E;
-    
+
 }
 
 .icone-pesquisa {
-    float:right;
+    float: right;
     margin-right: 11px;
-    
+
 }
 
-.icone-pesquisa img{
-    float:right;
+.icone-pesquisa img {
+    float: right;
     margin-right: 10px;
     margin-top: 4px;
     width: 20px;
-    height: 20px;    
+    height: 20px;
 }
 
 #em-alta {
@@ -59,22 +58,22 @@
 }
 
 .trending {
-    
+
     background-color: #E5EFFF;
     border-radius: 10px;
-        
+
     margin: 10px;
 }
 
 .trending-proxima {
-    
+
     color: #325A7E;
     font-size: 15px;
     font-weight: bold;
     padding: 10px;
 
     /* border: 1px solid blue; */
-    
+
 }
 
 .titulo-trending {
@@ -86,7 +85,7 @@
     /* border: 1px solid red; */
 }
 
-.numero-interacoes{
+.numero-interacoes {
     color: #325A7E;
     opacity: 0.7;
     font-size: 14px;
@@ -95,13 +94,13 @@
     /* border: 1px solid green; */
 }
 
-.opcoes-trending img{
+.opcoes-trending img {
 
     margin-right: 6px;
     width: 20px;
     height: 20px;
     float: right;
-    
+
 }
 
 /* PROPAGANDAS? */

@@ -21,16 +21,15 @@ html {
 /* Sidebars */
 .side-bar {
     width: 20%;
-    background-color: #D9D9D9;
+    background-color: #325A7E;
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
 }
 
 .logo {
-    width: 150px;
+    width: 250px;
     height: auto;
 }
 
@@ -42,7 +41,8 @@ html {
 }
 
 .img.menu {
-    width: 25px;
+    width: 50px;
+    filter: invert(100%);
 }
 
 .menu.button {
@@ -52,6 +52,7 @@ html {
     width: 190px;
     border-radius: 10px;
     padding: 5px 5px 5px 5px;
+    color: white;
 }
 
 /* Conteúdo central */
@@ -65,15 +66,17 @@ html {
 
 /* Menu de perfil */
 #profile-menu {
-    
     width: 100%;
     height: 67px;
     /*flex-shrink: 0;*/
-    background: #F9DBDB;
+    background: #325A7E;
     display: flex;
     justify-content: space-between;
     gap: 10px;
     padding: 18px 18px 18px 18px;
+    border-right: black solid 1px;
+    border-left: black solid 1px;
+    color: #E5EFFF;
 }
 
 #section1 {}
@@ -85,19 +88,17 @@ html {
 .profile.button {
     border-radius: 10px;
     width: 30%;
+    filter: invert(100%);
 }
 
 .profile.button.bell {}
 
 .profile.button.cog {}
 
-.profile.button.avatar {
-    width: 40px;
-    /* border: 3px solid red; */
-}
+.profile.button.avatar {}
 
 #feed {
-    
+
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -106,7 +107,7 @@ html {
 /* Área para postagem */
 #post-section {
     display: flex;
-    background-color: #6EBED0;
+    background-color: #E5EFFF;
     height: 150px;
     justify-content: space-around;
 }
@@ -241,7 +242,7 @@ html {
     display: flex;
     align-items: flex-start;
     gap: 15px;
-    background-color: yellow;
+    background-color: #E5EFFF;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     padding: 10px 10px 10px 10px;
@@ -320,14 +321,20 @@ html {
     transition: background-color 0.3s ease;
 }
 
-.button:hover {
-    opacity: 0.6;
-}
+
 
 .menu.button:hover {
-    background-color: #636363;
+    background-color: #E5EFFF;
+    color: black;
+}
+
+.menu.button:hover img {
+    filter: invert(0%);
 }
 
 .profile.button:hover {
-    background-color: #636363;
+    background-color: #E5EFFF;
+    filter: invert(0%);
 }
+
+.profile.button:hover img {}

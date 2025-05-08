@@ -9,9 +9,21 @@
     <link rel="icon" type="image/png" href="../img/favicon.png" />
   </head>
   <body>
-    <div id="content" >
-      <div class="side-bar" id="side-bar-left" >
-        <img src="../img/logo.png" class="logo" />
+    <div id="content">
+      <div class="side-bar" id="side-bar-left">
+        <div
+          style="
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <img src="../img/logo.png" class="logo" />
+        </div>
+
         <div id="menu">
           <div class="menu button">
             <img src="../img/svg/home.svg" class="img menu" />
@@ -109,64 +121,48 @@
         </div>
       </div>
 
-      <div class="side-bar" id="side-bar-right" >
+      <div class="side-bar" id="side-bar-right">
         <div class="right-content-container">
           <div class="pesquisa">
-
             <div class="icone-pesquisa">
-              <img src="..\img\svg\search.svg" alt="opções">
+              <img src="..\img\svg\search.svg" alt="opções" />
             </div>
 
             <div class="form-pesquisa">
               <form>
-                <input type="text" class="texto-pesquisa" placeholder="Pesquise Novos Filmes">            
+                <input
+                  type="text"
+                  class="texto-pesquisa"
+                  placeholder="Buscar"
+                />
               </form>
             </div>
-
           </div>
-        
-          <div id="em-alta"   >
 
+          <div id="em-alta">
             <div class="trending">
-
               <div class="opcoes-trending">
-                <img src="..\img\svg\option-svgrepo-com.svg" alt="opções">
+                <img src="..\img\svg\option-svgrepo-com.svg" alt="opções" />
               </div>
 
-              <div class="trending-proxima">
-                    Trending Próxima a você:
-              </div>
+              <div class="trending-proxima">Trending Próxima a você:</div>
 
-              <div class="titulo-trending">
-                    Título da Trending
-              </div>
+              <div class="titulo-trending">Título da Trending</div>
 
-              <div class="numero-interacoes">
-                    323k Interações
-              </div>
-
-            </div>      
-            
-            <div class="trending">
-
-              <div class="opcoes-trending">
-                <img src="..\img\svg\option-svgrepo-com.svg" alt="opções">
-              </div>
-
-              <div class="trending-proxima">
-                    Trending Próxima a você:
-              </div>
-
-              <div class="titulo-trending">
-                    Título da Trending
-              </div>
-
-              <div class="numero-interacoes">
-                    323k Interações
-              </div>
-
+              <div class="numero-interacoes">323k Interações</div>
             </div>
 
+            <div class="trending">
+              <div class="opcoes-trending">
+                <img src="..\img\svg\option-svgrepo-com.svg" alt="opções" />
+              </div>
+
+              <div class="trending-proxima">Trending Próxima a você:</div>
+
+              <div class="titulo-trending">Título da Trending</div>
+
+              <div class="numero-interacoes">323k Interações</div>
+            </div>
           </div>
         </div>
       </div>
@@ -174,5 +170,4 @@
 
     <script src="../js/home.js"></script>
   </body>
-  
 </html>

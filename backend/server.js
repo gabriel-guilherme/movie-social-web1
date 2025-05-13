@@ -3,6 +3,10 @@ const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 
+require('dotenv').config({
+    path: '../.env'
+});
+
 const app = express();
 const PORT = 3000;
 
@@ -13,8 +17,17 @@ app.use(bodyParser.urlencoded({
 
 
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'src')));
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'src', 'assets')));
 
-const usersFilePath = path.join(__dirname, 'users.json');
+const session = require('express-session');
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+
+const usersFilePath = path.join(__dirname, 'data', 'users.json');
 
 
 app.get('/register.html', (req, res) => {

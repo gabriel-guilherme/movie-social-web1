@@ -6,10 +6,6 @@ import TopicSideBar from "../../components/TopicSideBar/index";
 
 export default function Home() {
     return (
-        <>
-            <NavSideBar/>
-            <PostMain/>
-            <TopicSideBar/>
-        </>    
+        <PostMain/> 
     );
 }

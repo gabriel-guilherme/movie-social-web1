@@ -1,29 +1,29 @@
 
 //import './App.css';
 import React from "react";
-import Home from "./pages/Home";
-import { Link } from 'react-router-dom';
 import AppRoutes from './routes';
+import Footer from "./components/Footer/index";
 import NavSideBar from "./components/NavSideBar/index";
 import TopicSideBar from "./components/TopicSideBar/index";
+import { useLocation } from 'react-router-dom';
 
 import './app.css';
 
+
+
 function App() {
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/Login' || location.pathname === '/Register';
+
   return (
     <>
+    <div id="header"></div>
       <div id="content">
-        <NavSideBar/>
+        {!isAuthPage && <NavSideBar />}
         <AppRoutes />
-        <TopicSideBar/>
+        {!isAuthPage && <TopicSideBar />}
       </div>
-      <div id="footer">
-        <p>Made with ❤️ by me</p>
-        <p>Copyright © 2025</p>
-        <p>All rights reserved</p>
-      </div>
-
-      
+    <Footer />
     </>
   );
 }

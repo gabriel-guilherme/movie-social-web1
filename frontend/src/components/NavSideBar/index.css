@@ -25,22 +25,27 @@
     width: 70%;
     margin: 10px 0;
     padding: 10px;
-    /*background-color: #2A4B6D;*/
+    font-size: 22px;
+    /* background-color: #2A4B6D; */
     border-radius: 5px;
     color: white;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-
     display: flex;
     align-items: center;
-    transition: background-color 0.3s ease;
+    gap: 10px;
+    transition: background-color 0.3sease;
 }
 
 .nav-item-image {
     width: 50px;
     margin-right: 10px;
     filter: invert(100%);
+}
+
+.nav-item svg{
+    font-size: 50px;
 }
 
 .nav-item:hover img{

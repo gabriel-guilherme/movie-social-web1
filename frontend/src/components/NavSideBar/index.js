@@ -1,7 +1,8 @@
 import React from "react";
-import './index.css';
-
 import SideBar from "../SideBar";
+import {FaHome, FaTags, FaRegUser} from "react-icons/fa"
+
+import './index.css';
 
 export default function NavSideBar() {
     return (
@@ -12,11 +13,11 @@ export default function NavSideBar() {
             
         }>
             <ul className="nav-list">
-                <li className="nav-item"><img src="/img/svg/home.svg" className="nav-item-image" alt="Home"/>Home</li>
-                <li className="nav-item"><img src="/img/svg/pictures.svg" className="nav-item-image" alt="Pictures"/>About</li>
-                <li className="nav-item"><img src="/img/svg/folders.svg" className="nav-item-image" alt="folders"/>Services</li>
-                <li className="nav-item"><img src="/img/svg/tags.svg" className="nav-item-image" alt="tags"/>Contact</li>
+                <li className="nav-item"><FaHome/>Home</li>
+                <li className="nav-item"><FaTags/>Movies</li>
+                <li className="nav-item"><FaRegUser/>Profile</li>
             </ul>
+            
         </SideBar>
     );
 }

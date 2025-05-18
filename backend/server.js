@@ -1,114 +1,114 @@
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const bodyParser = require('body-parser');
+require('dotenv').config({ path: './.env' });
+const cors = require('cors');
 
-require('dotenv').config({
-    path: '../.env'
-});
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { PrismaClient } = require('@prisma/client');
 
+const prisma = new PrismaClient();
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
-
-app.use(bodyParser.urlencoded({
-    extended: true
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true // permite envio de cookies (sessão)
 }));
 
+app.use(express.json());
+app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'src')));
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'src', 'assets')));
+const generateToken = (user) => {
+  return jwt.sign(
+    { username: user.username, email: user.email, name: user.name },
+    process.env.JWT_SECRET,
+    { expiresIn: '1d' }
+  );
+};
 
-const session = require('express-session');
+const authenticateToken = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ authenticated: false });
 
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
-}));
+  try {
+    const user = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = user;
+    next();
+  } catch (err) {
+    return res.status(403).json({ authenticated: false, error: 'Token inválido' });
+  }
+};
 
-const usersFilePath = path.join(__dirname, 'data', 'users.json');
+// Registro
+app.post('/register', async (req, res) => {
+  const { username, email, password, 'first-name': firstName, 'last-name': lastName, 'remember-me': remember } = req.body;
 
+  if (!email || !password) return res.status(400).send('Email e senha são obrigatórios.');
 
-app.get('/register.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'src', 'pages', 'register.html'));
+  const existingEmail = await prisma.user.findUnique({ where: { email } });
+  if (existingEmail) return res.status(409).send('Email já existe.');
+
+  const existingUsername = await prisma.user.findUnique({ where: { username } });
+  if (existingUsername) return res.status(409).send('Nome de usuário já existe.');
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = await prisma.user.create({
+    data: {
+      username,
+      email,
+      password: hashedPassword,
+      name: firstName + ' ' + lastName,
+    }
+  });
+
+  const token = generateToken(newUser);
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: false, // true em produção com HTTPS
+    maxAge: remember === 'on' ? 30 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000
+  });
+
+  res.status(201).send('Usuário registrado com sucesso.');
 });
 
 
-app.get('/login.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'src', 'pages', 'login.html'));
+// Login
+app.post('/login', async (req, res) => {
+  const { username, email, password, remember } = req.body;
+
+  if (!email || !password) return res.status(400).send('Email e senha são obrigatórios.');
+
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(401).send('Credenciais inválidas.');
+  }
+
+  const token = generateToken(user);
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: false,
+    maxAge: remember === 'on' ? 30 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000
+  });
+
+  res.send('Login realizado com sucesso.');
 });
 
-
-app.get('/home.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'src', 'pages', 'home.html'));
+// Verificação de login
+app.get('/check-auth', authenticateToken, (req, res) => {
+  res.json({ authenticated: true, user: req.user });
 });
 
-
-app.post('/register', (req, res) => {
-    const {
-        "first-name": firstName,
-        "last-name": lastName,
-        email,
-        password
-    } = req.body;
-
-    let users = [];
-
-    // Lê usuários já registrados, se houver
-    if (fs.existsSync(usersFilePath)) {
-        const data = fs.readFileSync(usersFilePath);
-        users = JSON.parse(data);
-    }
-
-    // Verifica se o usuário já existe
-    const exists = users.find(user => user.email === email);
-    if (exists) {
-        return res.status(400).send('Usuário já existe');
-    }
-
-    // Adiciona novo usuário
-    users.push({
-        firstName,
-        lastName,
-        email,
-        password
-    });
-
-    // Salva no arquivo
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
-
-    // Redireciona para home com nome e sobrenome
-    res.redirect('/home.html?email=' + encodeURIComponent(email) +
-        '&nome=' + encodeURIComponent(firstName) +
-        '&sobrenome=' + encodeURIComponent(lastName));
+app.get('/me', authenticateToken, (req, res) => {
+  const { name, email, username } = req.user;
+  res.json({ name, email, username });
 });
 
-
-app.post('/login', (req, res) => {
-    const {
-        email,
-        password
-    } = req.body;
-
-    // Verifica se há arquivo de usuários
-    if (!fs.existsSync(usersFilePath)) {
-        return res.redirect('/login.html?error=true');
-    }
-
-    const data = fs.readFileSync(usersFilePath);
-    const users = JSON.parse(data);
-
-    const user = users.find(u => u.email === email && u.password === password);
-
-    if (user) {
-        // Redireciona com nome e sobrenome também
-        res.redirect('/home.html?email=' + encodeURIComponent(user.email) +
-            '&nome=' + encodeURIComponent(user.firstName) +
-            '&sobrenome=' + encodeURIComponent(user.lastName));
-    } else {
-        res.redirect('/login.html?error=true');
-    }
+// Logout
+app.post('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.send('Logout realizado com sucesso.');
 });
 
 

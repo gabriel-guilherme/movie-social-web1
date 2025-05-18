@@ -1,15 +1,18 @@
 // src/components/Register.jsx
 import React, { useState } from 'react';
 import useRedirectIfAuth from '../../hooks/useRedirectIfAuth';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 export default function Register() {
+  const [username, setUserName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useRedirectIfAuth();
 
@@ -29,6 +32,7 @@ export default function Register() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+            username,
             email,
             password,
             'first-name': firstName,
@@ -38,10 +42,10 @@ export default function Register() {
         });
 
         if (response.ok) {
-        window.location.href = '/home';
+          navigate('/home');
         } else {
-        const message = await response.text();
-        setError(message || 'Erro ao registrar.');
+          const message = await response.text();
+          setError(message || 'Erro ao registrar.');
         }
     } catch (error) {
         console.error(error);
@@ -63,6 +67,18 @@ export default function Register() {
             <h2>Cadastrar-se</h2>
           </div>
           <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label htmlFor="username">Nome de usuário</label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
+                required
+              />
+            </div>
             <div className="input-group">
               <label htmlFor="first-name">Primeiro Nome</label>
               <input
@@ -134,7 +150,7 @@ export default function Register() {
           <div className="bottom-button">
             <button
               className="btn-outline"
-              onClick={() => (window.location.href = '/login')}
+              onClick={() => (navigate('/login'))}
             >
               Já tem uma conta? Entrar
             </button>

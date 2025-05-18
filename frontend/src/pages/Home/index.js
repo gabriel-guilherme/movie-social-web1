@@ -10,12 +10,14 @@ export default function Home() {
   const user = useUserContext();
   const [posts, setPosts] = useState([]);
 
+  console.log(user);
+
   const handlePublish = (message) => {
     if (message.trim() === '') return;
 
     const newPost = {
       id: Date.now(),
-      name: `${user.firstName} ${user.lastName}`,
+      name: user.username,
       message: message,
       time: 'há poucos segundos'
     };

@@ -6,6 +6,7 @@ import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
 
 import Home from './pages/Home';
+import Catalog from './pages/Catalog';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -15,6 +16,7 @@ const AppRoutes = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/catalog" element={<Catalog />} />
       </Route>
 
 

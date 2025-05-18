@@ -1,6 +1,7 @@
 // src/components/LoginPage.jsx
 import React, { useState } from 'react';
 import useRedirectIfAuth from '../../hooks/useRedirectIfAuth';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 export default function LoginPage() {
@@ -8,6 +9,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useRedirectIfAuth();
 
@@ -36,7 +38,7 @@ export default function LoginPage() {
       } else {
         setError('');
         //alert('Login realizado com sucesso!');
-        window.location.href = '/home'; 
+        navigate('/home');
       }
     } catch (err) {
       setError('Erro de rede ou servidor.');
@@ -96,7 +98,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 className="link-button"
-                onClick={() => window.location.href = '/forgot-password'}
+                onClick={() => navigate('/forgot-password')}
               >
                 Esqueceu a senha?
               </button>
@@ -110,7 +112,7 @@ export default function LoginPage() {
           <div className="bottom-button">
             <button
               className="btn-outline"
-              onClick={() => window.location.href = '/register'}
+              onClick={() => navigate('/register')}
             >
               Criar conta
             </button>

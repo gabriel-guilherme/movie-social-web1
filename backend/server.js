@@ -1,6 +1,3 @@
-//const path = require('path');
-//const fs = require('fs');
-//const bodyParser = require('body-parser');
 const express = require('express');
 require('dotenv').config({ path: './.env' });
 const cors = require('cors');
@@ -14,10 +11,6 @@ const prisma = new PrismaClient();
 const app = express();
 const PORT = 3001;
 
-// Configurações
-//app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
-
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true // permite envio de cookies (sessão)
@@ -26,22 +19,9 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-//const usersFilePath = path.join(__dirname, 'data', 'users.json');
-
-/*// Funções auxiliares
-const loadUsers = () => {
-    if (!fs.existsSync(usersFilePath)) return [];
-    const data = fs.readFileSync(usersFilePath);
-    return JSON.parse(data);
-};*/
-
-/*const saveUsers = (users) => {
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
-};*/
-
 const generateToken = (user) => {
   return jwt.sign(
-    { email: user.email, firstName: user.firstName, lastName: user.lastName },
+    { username: user.username, email: user.email, name: user.name },
     process.env.JWT_SECRET,
     { expiresIn: '1d' }
   );
@@ -62,21 +42,24 @@ const authenticateToken = (req, res, next) => {
 
 // Registro
 app.post('/register', async (req, res) => {
-  const { email, password, 'first-name': firstName, 'last-name': lastName, 'remember-me': remember } = req.body;
+  const { username, email, password, 'first-name': firstName, 'last-name': lastName, 'remember-me': remember } = req.body;
 
   if (!email || !password) return res.status(400).send('Email e senha são obrigatórios.');
 
-  const existingUser = await prisma.user.findUnique({ where: { email } });
-  if (existingUser) return res.status(409).send('Usuário já existe.');
+  const existingEmail = await prisma.user.findUnique({ where: { email } });
+  if (existingEmail) return res.status(409).send('Email já existe.');
+
+  const existingUsername = await prisma.user.findUnique({ where: { username } });
+  if (existingUsername) return res.status(409).send('Nome de usuário já existe.');
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const newUser = await prisma.user.create({
     data: {
+      username,
       email,
       password: hashedPassword,
-      firstName,
-      lastName
+      name: firstName + ' ' + lastName,
     }
   });
 
@@ -93,7 +76,7 @@ app.post('/register', async (req, res) => {
 
 // Login
 app.post('/login', async (req, res) => {
-  const { email, password, remember } = req.body;
+  const { username, email, password, remember } = req.body;
 
   if (!email || !password) return res.status(400).send('Email e senha são obrigatórios.');
 
@@ -118,8 +101,8 @@ app.get('/check-auth', authenticateToken, (req, res) => {
 });
 
 app.get('/me', authenticateToken, (req, res) => {
-  const { firstName, lastName, email } = req.user;
-  res.json({ firstName, lastName, email });
+  const { name, email, username } = req.user;
+  res.json({ name, email, username });
 });
 
 // Logout

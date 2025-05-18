@@ -1,0 +1,10 @@
+git flow init
+git flow feature start nome-da-funcionalidade
+    #Automaticamente é criada a branch feature/nova-funcionalidade a partir de develop.
+    #Você faz a feature e depois faz o commit
+
+git add .
+git commit -m "aaaaaa"
+git push feature/nome-da-funcionalidade
+
+#Caso você queria fazer uma nova Feature, você repete o processo de cima

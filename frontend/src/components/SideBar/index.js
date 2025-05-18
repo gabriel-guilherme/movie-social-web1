@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css"; // ou use seu CSS principal
 
-export default function SideBar({ title, headerContent, children, className = "" }) {
+export default function SideBar({ title, headerContent, footerContent, children, className = "" }) {
     return (
         <div className={`side-bar ${className}`}>
             <div className="side-bar-header">
@@ -9,6 +9,9 @@ export default function SideBar({ title, headerContent, children, className = ""
             </div>
             <div className="side-bar-content">
                 {children}
+            </div>
+            <div className="side-bar-footer">
+                {footerContent ? footerContent : <p>Footer</p>}
             </div>
         </div>
     );

@@ -113,6 +113,16 @@ app.post('/logout', (req, res) => {
     });
 });
 
+// Rota para recuperar informações do usuário
+app.get('/me', (req, res) => {
+  if (req.session && req.session.user) {
+    const { firstName, lastName, email } = req.session.user;
+    return res.json({ firstName, lastName, email });
+  }
+
+  return res.status(401).json({ error: 'Não autenticado' });
+});
+
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);

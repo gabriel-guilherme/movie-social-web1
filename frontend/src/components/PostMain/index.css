@@ -1,8 +1,0 @@
-#post-main {
-    height: 100%;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    padding: 10px 30px 10px 30px;
-}

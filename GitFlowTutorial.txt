@@ -1,3 +1,4 @@
+git pull
 git flow init
 git flow feature start nome-da-funcionalidade
     #Automaticamente é criada a branch feature/nova-funcionalidade a partir de develop.

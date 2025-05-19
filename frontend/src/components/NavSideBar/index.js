@@ -28,21 +28,18 @@ export default function NavSideBar() {
 
     return (
         <SideBar title={"Navigation Side Bar"} className="nav-side-bar" headerContent={
-            <div id="logo-container">
-                <img src="/img/logo.png" className="logo" alt="Logo" />
-            </div>
+            <h1>Movie<br/> &nbsp; Social</h1>
             
         }>
-            <ul className="nav-list">
-                <li className="nav-item" onClick={toHome}><FaHome/>Home</li>
-                <li className="nav-item" onClick={toCatalog}><FaTags/>Movies</li>
-                <li className="nav-item"><FaUser/>Profile</li>
-                <li className="nav-item" onClick={logout}><FaDoorClosed/>Logout</li>
-            </ul>
+            <div className="nav-list">
+                <div className="nav-item" onClick={toHome}><FaHome/>Home</div><br/>
+                <div className="nav-item"><FaTags/>Movies</div><br/>
+                <div className="nav-item"><FaUser/>Profile</div><br/>
+                <div className="nav-item" onClick={logout}><FaDoorClosed/>Logout</div><br/>
+            </div>
             <div className="nav-footer">
                 <p>© 2023 Movie App</p>
             </div>
-            
         </SideBar>
     );
 }

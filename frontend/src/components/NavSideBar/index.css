@@ -1,58 +1,42 @@
-#logo-container {
-  width: 100%;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.logo {
-    width: 250px;
-    height: auto;
-}
 
 .nav-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+    margin-top: 20px;
+    margin-left: 40px;
 }
 
 .nav-item {
-    width: 70%;
+    align-content: center;
+    display: inline-block;
     margin: 10px 0;
-    padding: 10px;
-    font-size: 22px;
-    border-radius: 5px;
-    color: white;
-    text-align: center;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #ded0c7;
     text-decoration: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: background-color 0.3s ease;
+    transition: 0.3s ease;
     user-select: none;
+    border-radius: 25px;
 }
 
-.nav-item-image {
-    width: 50px;
-    margin-right: 10px;
-    filter: invert(100%);
-}
 
 .nav-item svg{
-    font-size: 50px;
+    margin-right: 10px;
 }
 
-.nav-item:hover img{
-    filter: invert(0%);
-}
 
 .nav-item:hover {
-    background-color: #E5EFFF;
-    color: black;
+    background-color: #ded0c7;
+    color: #23232e;
 }
+
+h1{
+    color:#ded0c7;
+    transition: 1s ease;
+    cursor: pointer;
+}
+
+h1:hover{
+    color:#cca795;
+}
+
+

@@ -26,8 +26,8 @@
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
-    height: 85%;
-    overflow-y: visible;
+    /*height: 85%;*/
+    overflow-y: auto;
 }
 
 .catalog .movie-card {
@@ -38,6 +38,7 @@
   overflow: hidden;
   text-align: center;
   transition: transform 0.3s;
+
 }
 
 .catalog .movie-card:hover {

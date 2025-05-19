@@ -38,7 +38,7 @@ export default function Catalog() {
       <h1>Catálogo</h1>
 
         <div className="movie-grid">
-            {movies.slice(0, 8).map((movie) => (
+            {movies.slice(0, 10).map((movie) => (
             <div key={movie.id} className="movie-card">
                 <img
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}

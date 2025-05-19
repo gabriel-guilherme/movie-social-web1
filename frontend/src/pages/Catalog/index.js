@@ -12,7 +12,7 @@ export default function Catalog() {
     async function fetchMovies() {
       try {
         const res = await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR&page=${page}`
+          `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=pt-BR&page=${page}&sort_by=popularity.desc`
         );
         const data = await res.json();
         setMovies(data.results);
@@ -35,7 +35,7 @@ export default function Catalog() {
 
   return (
     <div className="catalog">
-      <h1>Catálogo de Filmes Populares</h1>
+      <h1>Catálogo</h1>
 
         <div className="movie-grid">
             {movies.slice(0, 8).map((movie) => (
@@ -45,7 +45,6 @@ export default function Catalog() {
                 alt={movie.title}
                 />
                 <h3>{movie.title}</h3>
-                <p>{movie.release_date}</p>
             </div>
             ))}
         </div>

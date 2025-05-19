@@ -22,6 +22,10 @@ export default function NavSideBar() {
         navigate('/home');
     }
 
+    function toCatalog() {
+        navigate('/catalog');
+    }
+
     return (
         <SideBar title={"Navigation Side Bar"} className="nav-side-bar" headerContent={
             <div id="logo-container">
@@ -31,7 +35,7 @@ export default function NavSideBar() {
         }>
             <ul className="nav-list">
                 <li className="nav-item" onClick={toHome}><FaHome/>Home</li>
-                <li className="nav-item"><FaTags/>Movies</li>
+                <li className="nav-item" onClick={toCatalog}><FaTags/>Movies</li>
                 <li className="nav-item"><FaUser/>Profile</li>
                 <li className="nav-item" onClick={logout}><FaDoorClosed/>Logout</li>
             </ul>

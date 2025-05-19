@@ -22,14 +22,14 @@ export default function Footer() {
                     <p className="footer-item-nome">Joás Leon Rocha Melo</p>
                     <p className="footer-item-nome">Gabriel Guilherme Cavalcanti da Costa</p>
                     <p className="footer-item-nome">Zeus Justino de Lima</p>
-                    <p className="footer-item-nome">-----------</p>
+                    <p className="footer-item-nome">Raphael Cezar Sabbado</p>
                 </div>
                 <div>
                     <p className="footer-item">Envie-nos um Email</p>
                     <div className="footer-menu-link">leon.rocha.702@ufrn.edu.br</div><br/>
                     <div className="footer-menu-link">gabriel377@live.com</div><br/>
                     <div className="footer-menu-link">zeuslima360@gmail.com</div><br/>
-                    <div className="footer-menu-link"></div><br/>
+                    <div className="footer-menu-link">brsabbadobr@gmail.com</div><br/>
                 </div>
             </div>
             <div id="footer-copyrght">

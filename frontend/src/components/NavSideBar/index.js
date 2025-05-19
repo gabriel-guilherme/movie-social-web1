@@ -33,7 +33,7 @@ export default function NavSideBar() {
         }>
             <div className="nav-list">
                 <div className="nav-item" onClick={toHome}><FaHome/>Home</div><br/>
-                <div className="nav-item"><FaTags/>Movies</div><br/>
+                <div className="nav-item" onClick={toCatalog}><FaTags/>Movies</div><br/>
                 <div className="nav-item"><FaUser/>Profile</div><br/>
                 <div className="nav-item" onClick={logout}><FaDoorClosed/>Logout</div><br/>
             </div>

@@ -1,9 +1,21 @@
 import React from "react";
-import './index.css';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+import './index.css';
 
 export default function Footer() {
     const navigate = useNavigate();
+
+    function logout() {
+        axios.post('http://localhost:3001/logout', {}, { withCredentials: true })
+            .then(() => {
+            navigate('/login');
+            })
+            .catch(() => {
+            alert('Erro ao deslogar');
+            });
+    }
     function toHome() {
         navigate('/home');
     }
@@ -15,7 +27,7 @@ export default function Footer() {
                     <div onClick={toHome} className="footer-menu-link">Home</div><br/>
                     <div onClick={toHome} className="footer-menu-link">Movies</div><br/>
                     <div onClick={toHome} className="footer-menu-link">Profile</div><br/>
-                    <div onClick={toHome} className="footer-menu-link">Logout</div><br/>
+                    <div onClick={logout} className="footer-menu-link">Logout</div><br/>
                 </div>
                 <div id="footer-dev">
                     <p className="footer-item">Desenvolvedores</p>
@@ -32,7 +44,7 @@ export default function Footer() {
                     <div className="footer-menu-link">brsabbadobr@gmail.com</div><br/>
                 </div>
             </div>
-            <div id="footer-copyrght">
+            <div id="footer-copyright">
                 <p>Copyright © 2025</p>
             </div>
         </div>

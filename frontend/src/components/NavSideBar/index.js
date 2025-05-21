@@ -22,14 +22,23 @@ export default function NavSideBar() {
         navigate('/home');
     }
 
+    function toCatalog() {
+        navigate('/catalog');
+    }
+
     return (
-        <SideBar className="nav-side-bar">
+        <SideBar title={"Navigation Side Bar"} className="nav-side-bar" headerContent={
+            <h1>Movie<br/> &nbsp; Social</h1>
+            
+        }>
             <div className="nav-list">
-                <h1>Movie<br/> &nbsp; Social</h1>
                 <div className="nav-item" onClick={toHome}><FaHome/>Home</div><br/>
-                <div className="nav-item"><FaTags/>Movies</div><br/>
+                <div className="nav-item" onClick={toCatalog}><FaTags/>Movies</div><br/>
                 <div className="nav-item"><FaUser/>Profile</div><br/>
                 <div className="nav-item" onClick={logout}><FaDoorClosed/>Logout</div><br/>
+            </div>
+            <div className="nav-footer">
+                <p>© 2023 Movie App</p>
             </div>
         </SideBar>
     );

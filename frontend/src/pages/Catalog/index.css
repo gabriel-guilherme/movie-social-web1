@@ -13,6 +13,19 @@
   font-size: 2rem;
 }
 
+.catalog-header {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-div {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 /*.catalog .movie-grid {
     display: flex;
     flex-wrap: wrap;

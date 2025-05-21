@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import {FaSearch} from "react-icons/fa"
 
 import "./index.css";
 
@@ -6,11 +7,11 @@ export default function Catalog() {
   const apiKey = '13a7a49d4fd9a1e41afc2b191db34b77'; 
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1); 
+  const [totalPages, setTotalPages] = useState(1);
+  const [query, setQuery] = useState('');
 
-  useEffect(() => {
-    async function fetchMovies() {
-      try {
+  const fetchMovies = useCallback( async () => {
+    try {
         const res = await fetch(
           `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=pt-BR&page=${page}&sort_by=popularity.desc`
         );
@@ -20,10 +21,32 @@ export default function Catalog() {
       } catch (error) {
         console.error("Erro ao buscar filmes:", error);
       }
-    }
+  }, [page])
 
-    fetchMovies();
-  }, [page]);
+  const fetchSearch = useCallback( async () => {
+    try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&include_adult=false&language=pt-BR&page=${page}`
+        );
+        const data = await res.json();
+        setMovies(data.results);
+        setTotalPages(data.total_pages);
+      } catch (error) {
+        console.error("Erro ao buscar filmes:", error);
+      }
+  }, [page, query])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (query !== '') {
+        fetchSearch();
+      } else {
+        fetchMovies();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [query, page, fetchMovies, fetchSearch]);
 
   const handlePrevious = () => {
     if (page > 1) setPage(page - 1);
@@ -35,7 +58,20 @@ export default function Catalog() {
 
   return (
     <div className="catalog">
-      <h1>Catálogo</h1>
+    <div className="catalog-header">
+        <h1>Catálogo</h1>
+        <div className="search-div">
+            <FaSearch/>
+            <input
+                className="search-input"
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Buscar filmes..."
+            />
+        </div>
+    </div>
+      
 
         <div className="movie-grid">
             {movies.slice(0, 10).map((movie) => (

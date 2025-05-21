@@ -19,14 +19,20 @@ export default function Footer() {
     function toHome() {
         navigate('/home');
     }
+    function toCatalog() {
+        navigate('/catalog');
+    }
+    function toProfile() {
+        navigate('/profile');
+    }
     return (
         <div id="footer">
             <div id="footer-itens">
                 <div>
                     <p className="footer-item">Menu</p>
                     <div onClick={toHome} className="footer-menu-link">Home</div><br/>
-                    <div onClick={toHome} className="footer-menu-link">Movies</div><br/>
-                    <div onClick={toHome} className="footer-menu-link">Profile</div><br/>
+                    <div onClick={toCatalog} className="footer-menu-link">Movies</div><br/>
+                    <div onClick={toProfile} className="footer-menu-link">Profile</div><br/>
                     <div onClick={logout} className="footer-menu-link">Logout</div><br/>
                 </div>
                 <div id="footer-dev">

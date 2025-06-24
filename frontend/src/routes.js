@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Movie from './pages/Movie';
+import Profile from './pages/Profile';
 
 const AppRoutes = () => {
   return (
@@ -17,6 +19,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog/:id" element={<Movie/>} />
+        <Route path='/profile/:username' element={<Profile />} />
       </Route>
 
 

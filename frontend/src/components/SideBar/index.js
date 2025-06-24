@@ -11,7 +11,6 @@ export default function SideBar({ title, headerContent, footerContent, children,
                 {children}
             </div>
             <div className="side-bar-footer">
-                {footerContent ? footerContent : <p>Footer</p>}
             </div>
         </div>
     );

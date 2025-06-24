@@ -1,0 +1,120 @@
+.catalog {
+  width: 60%;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #0f0f0f;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.catalog h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.catalog-header {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-div {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/*.catalog .movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    height: 85%;
+}*/
+
+.movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    /*height: 85%;*/
+    overflow-y: auto;
+}
+
+.catalog .movie-card {
+  width: 20%;
+  height: auto;
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+
+}
+
+.catalog .movie-card:hover {
+  transform: scale(1.05);
+}
+
+.catalog .movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.catalog .movie-card h3 {
+  margin: 10px 0 5px;
+  font-size: 1rem;
+  height: 10%;
+  align-content: center;
+}
+
+.catalog .movie-card p {
+  font-size: 0.9em;
+  color: #cccccc;
+  margin-bottom: 10px;
+}
+
+.catalog  {
+    /*margin-top: 20px;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.catalog .pagination button {
+  background-color: #03a9f4;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.catalog .pagination button:hover {
+  background-color: #0288d1;
+}
+
+.catalog .pagination button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.catalog .pagination span {
+  font-size: 1rem;
+  color: #ffffff;
+}

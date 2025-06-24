@@ -4,10 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import SideBar from "../SideBar";
 import {FaHome, FaTags, FaDoorClosed, FaUser} from "react-icons/fa"
 
+import { useUserContext } from '../../contexts/UserContext';
+
 import './index.css';
 
 export default function NavSideBar() {
     const navigate = useNavigate();
+    const user = useUserContext();
+
     function logout() {
         axios.post('http://localhost:3001/logout', {}, { withCredentials: true })
             .then(() => {
@@ -26,6 +30,10 @@ export default function NavSideBar() {
         navigate('/catalog');
     }
 
+    function toProfile() {
+        navigate('/profile/' + user.username);
+    }
+
     return (
         <SideBar title={"Navigation Side Bar"} className="nav-side-bar" headerContent={
             <h1>Movie<br/> &nbsp; Social</h1>
@@ -34,7 +42,7 @@ export default function NavSideBar() {
             <div className="nav-list">
                 <div className="nav-item" onClick={toHome}><FaHome/>Home</div><br/>
                 <div className="nav-item" onClick={toCatalog}><FaTags/>Movies</div><br/>
-                <div className="nav-item"><FaUser/>Profile</div><br/>
+                <div className="nav-item" onClick={toProfile}><FaUser/>Profile</div><br/>
                 <div className="nav-item" onClick={logout}><FaDoorClosed/>Logout</div><br/>
             </div>
             <div className="nav-footer">

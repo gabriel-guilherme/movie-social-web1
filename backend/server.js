@@ -40,6 +40,45 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
+// Posts
+// Rota para criar um novo post
+app.post('/posts', async (req, res) => {
+  const { content, authorId } = req.body; // Dados do post enviados pelo frontend
+
+  try {
+    const newPost = await prisma.post.create({
+      data: {
+        content,
+        author: {
+          connect: { id: authorId } // Conecta o post a um usuário existente
+        }
+      },
+    });
+    res.status(201).json(newPost); // Retorna o post criado
+  } catch (error) {
+    console.error('Erro ao criar post:', error);
+    res.status(500).json({ error: 'Erro ao criar post no banco de dados.' });
+  }
+});
+
+// Rota para buscar todos os posts (ou posts de um usuário específico)
+app.get('/posts', async (req, res) => {
+  try {
+    const posts = await prisma.post.findMany({
+      include: {
+        author: true // Inclui os dados do autor em cada post
+      },
+      orderBy: {
+        id: 'desc' // Ordena para mostrar os mais recentes primeiro
+      }
+    });
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error('Erro ao buscar posts:', error);
+    res.status(500).json({ error: 'Erro ao buscar posts do banco de dados.' });
+  }
+});
+
 // Registro
 app.post('/register', async (req, res) => {
   const { username, email, password, 'first-name': firstName, 'last-name': lastName, 'remember-me': remember } = req.body;
@@ -100,9 +139,40 @@ app.get('/check-auth', authenticateToken, (req, res) => {
   res.json({ authenticated: true, user: req.user });
 });
 
-app.get('/me', authenticateToken, (req, res) => {
-  const { name, email, username } = req.user;
-  res.json({ name, email, username });
+app.get('/me', authenticateToken, async (req, res) => { // Adicione 'async' aqui
+  // O ID do usuário deve vir do token decodificado pelo authenticateToken
+  const userEmail = req.user.email; // Assegure que req.user.id existe e é o ID do usuário no DB
+
+  if (!userEmail) {
+    return res.status(401).json({ error: 'ID do usuário não encontrado no token.' });
+  }
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+      // Selecione apenas os campos que você quer retornar
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        username: true,
+        // Não inclua a senha por segurança!
+        createdAt: true,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado.' });
+    }
+
+    console.log('Usuário puxado do BD:', user); // Log para depuração
+    res.json(user); // Retorna os dados do usuário puxados do DB
+  } catch (error) {
+    console.error('Erro ao buscar dados do usuário:', error);
+    res.status(500).json({ error: 'Erro interno do servidor ao buscar usuário.' });
+  }
 });
 
 // Logout

@@ -20,4 +20,13 @@ model User {
   username     String  @unique
   password  String
   createdAt DateTime @default(now())
+  posts     Post[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  content   String?
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int // A chave estrangeira que aponta para o ID do usuário
+  createdAt DateTime @default(now())
 }

@@ -1,9 +1,8 @@
 import React from 'react';
-import { FaRegHeart, FaRocketchat, FaRegPaperPlane } from 'react-icons/fa';
-
+import { FaRegHeart, FaHeart, FaRocketchat, FaRegPaperPlane } from 'react-icons/fa';
 import './index.css';
 
-function PostCard({ name, message, time }) {
+function PostCard({ id, name, message, time, likes, liked, onLikeToggle }) {
   return (
     <div className="post-card-container">
       <div className="post-card-header">
@@ -15,7 +14,10 @@ function PostCard({ name, message, time }) {
       </div>
       <div className="post-card-footer">
         <div className="post-icons">
-          <span><FaRegHeart /></span>
+          <span onClick={() => onLikeToggle(id)} style={{ cursor: 'pointer', color: liked ? 'red' : 'inherit' }}>
+            {liked ? <FaHeart /> : <FaRegHeart />}
+          </span>
+          <span style={{ cursor: "default" }}>{likes}</span>
           <span><FaRocketchat /></span>
           <span><FaRegPaperPlane /></span>
         </div>

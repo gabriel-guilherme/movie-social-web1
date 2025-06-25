@@ -1,5 +1,5 @@
 // src/layouts/MainLayout/index.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import NavSideBar from '../../components/NavSideBar';
 import TopicSideBar from '../../components/TopicSideBar';
@@ -14,9 +14,24 @@ import './index.css';
 export default function MainLayout() {
   const { user } = useUser();
   const loading = useAuthCheck();
+  const [artificialLoading, setArtificialLoading] = useState(true);
 
-  if (loading) return <div className="loading">Loading...</div>;
-  if (!user) return <p>Você precisa estar logado.</p>;
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setArtificialLoading(false);
+    }, 2900);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading || artificialLoading) return (
+    <div className="loading-container">
+      <div className="loader"></div>
+      <div className="loader2"></div>
+    </div>
+  );
+
+  if (!user) return null;
 
   return (
     <UserProvider value={user}>

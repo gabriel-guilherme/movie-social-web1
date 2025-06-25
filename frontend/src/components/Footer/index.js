@@ -2,10 +2,13 @@ import React from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import { useUserContext } from '../../contexts/UserContext';
+
 import './index.css';
 
 export default function Footer() {
     const navigate = useNavigate();
+    const user = useUserContext();
 
     function logout() {
         axios.post('http://localhost:3001/logout', {}, { withCredentials: true })
@@ -23,7 +26,7 @@ export default function Footer() {
         navigate('/catalog');
     }
     function toProfile() {
-        navigate('/profile');
+        navigate('/profile/' + user.username);
     }
     return (
         <div id="footer">

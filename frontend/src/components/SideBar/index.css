@@ -1,20 +1,40 @@
 ul {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .side-bar {
-    width: 20%;
-    background-color: #3a323c ;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%; /* mobile-first: sidebar ocupa toda largura */
+  background-color: #3a323c;
+  padding: 10px;
+  display: flex;
+  flex-direction: column; /* no mobile, itens podem ficar em linha (ou trocar para coluna se preferir) */
+  align-items: center;
+  overflow-x: auto; /* se itens não couberem */
+  box-sizing: border-box;
 }
 
 .side-bar-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* mobile: linha */
+  gap: 10px;
 }
 
+/* Tablets e desktop: sidebar fixa na lateral */
+@media (min-width: 768px) {
+  .side-bar {
+    width: 20%;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: visible;
+    padding: 20px 10px;
+    min-height: 100vh;
+  }
+
+  .side-bar-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

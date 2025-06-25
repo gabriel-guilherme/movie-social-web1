@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import "./index.css";
 
 export default function Catalog() {
-  const apiKey = '13a7a49d4fd9a1e41afc2b191db34b77'; 
+  const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -24,7 +24,7 @@ export default function Catalog() {
     } catch (error) {
       console.error("Erro ao buscar filmes:", error);
     }
-  }, [page]);
+  }, [page, apiKey]);
 
   const fetchSearch = useCallback(async () => {
     try {
@@ -37,7 +37,7 @@ export default function Catalog() {
     } catch (error) {
       console.error("Erro ao buscar filmes:", error);
     }
-  }, [page, debouncedQuery]);
+  }, [page, debouncedQuery, apiKey]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -88,7 +88,7 @@ export default function Catalog() {
       </div>
 
       <div className="movie-grid">
-        {movies.slice(0, 10).map((movie) => (
+        {movies.slice(0, 12).map((movie) => (
           <div key={movie.id} className="movie-card" onClick={() => handleMovieClick(movie.id)}>
             <img
               src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}

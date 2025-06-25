@@ -1,18 +1,110 @@
 #content {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column; /* mobile-first */
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+  transition: margin-left 0.3s ease;
 }
 
+/* Estado do menu aberto (classe adicionada via JS) */
+#content.menu-open {
+  margin-left: 0px; /* largura aproximada do NavSideBar */
+}
+
+/* Botão hamburguer fixo no canto superior esquerdo no mobile */
+.hamburger-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* As três barras do hamburguer */
+.hamburger-btn span {
+  width: 30px;
+  height: 3px;
+  background-color: #ded0c7;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* NavSideBar oculto inicialmente no mobile */
+#content > .NavSideBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* defina conforme a largura real do seu NavSideBar */
+  height: 100%;
+  background-color: #3a323c; /* ajuste conforme seu design */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Quando o menu está aberto, mostra o NavSideBar */
+#content.menu-open > .NavSideBar {
+  transform: translateX(0);
+}
+
+/* Conteúdo principal empurrado para direita quando menu aberto */
+#content.menu-open > :not(.NavSideBar) {
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Desktop: botão escondido e NavSideBar sempre visível */
+@media (min-width: 768px) {
+  .hamburger-btn {
+    display: none;
+  }
+
+  #content {
+    flex-direction: row;
+    margin-left: 0 !important;
+  }
+
+  #content > .NavSideBar {
+    position: static !important;
+    transform: none !important;
+    width: auto;
+    height: auto;
+    padding-right: 3%;
+  }
+
+  #content > :not(.NavSideBar) {
+    margin-left: 0 !important;
+  }
+}
+
+/* --- O resto do seu CSS original --- */
 .loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background-color: #3a323c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  background-color: #3a323c;
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .loading-container {
     gap: 35px;
+    padding: 40px;
+  }
 }
 
 /* HTML: <div class="loader"></div> */
@@ -123,3 +215,4 @@
  80%,
  100% {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,30px 30px,25px 25px,25px 25px,25px 25px,200% 200%}
 }
+

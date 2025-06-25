@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import "./index.css";
+
 export default function Movie() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const apiKey = '13a7a49d4fd9a1e41afc2b191db34b77';
+  const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 
   useEffect(() => {
     async function fetchMovie() {
@@ -24,7 +26,7 @@ export default function Movie() {
     }
 
     fetchMovie();
-  }, [id]);
+  }, [id, apiKey]);
 
   if (loading) return <p>Carregando...</p>;
   if (!movie) return <p>Filme não encontrado.</p>;

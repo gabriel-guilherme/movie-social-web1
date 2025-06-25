@@ -1,61 +1,69 @@
 .post-card-container {
   width: 100%;
+  max-width: 1500px;
   background-color: #e8f0fe;
   padding: 16px;
   border-radius: 12px;
-  max-width: 1500px;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   margin: 16px 0;
+  /* mobile-first */
 }
 
 .post-card-header {
   display: flex;
   gap: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .post-avatar {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: white;
   border-radius: 50%;
-  font-size: 28px;
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .post-content {
-  width: 95%;
+  width: 100%;
 }
 
 .post-name {
   display: block;
   margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
 }
 
 .post-text {
   width: 100%;
-  white-space: pre-wrap;     
-  word-wrap: break-word;      
-  max-height: 100px;           
-  overflow-y: auto;            
-  padding-right: 5px; 
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 100px;
+  overflow-y: auto;
+  padding-right: 5px;
   
   scrollbar-width: none;    /* Firefox */
-  -ms-overflow-style: none;    /* Internet Explorer e Edge antigo */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 .post-text::-webkit-scrollbar {
-  display: none;               /* Chrome, Safari e Edge */
+  display: none;            /* Chrome, Safari and Edge */
 }
-
 
 .post-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .post-icons span {
@@ -67,5 +75,37 @@
 .post-time {
   font-size: 12px;
   color: #777;
+  white-space: nowrap;
 }
 
+/* Tablets and up */
+@media (min-width: 768px) {
+  .post-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+  
+  .post-name {
+    font-size: 1.125rem;
+  }
+
+  .post-card-footer {
+    flex-wrap: nowrap;
+  }
+}
+
+/* Larger desktops */
+@media (min-width: 1024px) {
+  .post-card-container {
+    padding: 24px;
+  }
+
+  .post-name {
+    font-size: 1.25rem;
+  }
+
+  .post-icons span {
+    font-size: 20px;
+  }
+}

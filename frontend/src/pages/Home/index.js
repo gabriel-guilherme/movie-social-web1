@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import TopicSideBar from '../../components/TopicSideBar';
 import PostInput from "../../components/PostInput";
 import PostCard from "../../components/PostCard";
 import './index.css';
 
 import { useUserContext } from "../../contexts/UserContext";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const API_BASE_URL = 'http://localhost:3001';
 const LIMIT = 5;
@@ -24,6 +26,7 @@ function formatTimeAgo(isoDateString) {
 
 export default function Home() {
   const user = useUserContext();
+  const isMobile = useIsMobile();
   const [posts, setPosts] = useState([]);
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -144,6 +147,8 @@ export default function Home() {
   };
 
   return (
+    <>
+    {isMobile && <TopicSideBar />}
     <div id="post-main">
       <PostInput onPublish={handlePublish} />
       {posts.map(post => (
@@ -162,5 +167,7 @@ export default function Home() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div ref={loader} style={{ height: '1px' }} />
     </div>
+    {!isMobile && <TopicSideBar />}
+    </>
   );
 }

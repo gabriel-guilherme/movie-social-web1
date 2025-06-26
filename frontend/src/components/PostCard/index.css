@@ -3,17 +3,18 @@
   max-width: 1500px;
   background-color: #cca795 ;
   padding: 16px;
-  border-radius: 12px;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   margin: 16px 0;
   color: #23232e;
+  border-bottom: 6px solid #c27f6f;
+  border-top: 6px solid #ded0c7;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .post-card-header {
   display: flex;
   gap: 12px;
-  align-items: center;
   flex-wrap: nowrap;
 }
 
@@ -44,13 +45,11 @@
   width: 100%;
   white-space: pre-wrap;
   word-wrap: anywhere;
-  max-height: 100px;
-  overflow-y: auto;
   padding-right: 5px;
   height: auto;
   
-  scrollbar-width: none;    /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    
+  -ms-overflow-style: none; 
 }
 
 .post-text-movie {
@@ -59,7 +58,7 @@
 }
 
 .post-text::-webkit-scrollbar {
-  display: none;            /* Chrome, Safari and Edge */
+  display: none;            
 }
 
 .post-card-footer {
@@ -96,6 +95,12 @@
   border-radius: 6px;
   margin-top: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.post-movie-poster:hover{
+  scale: 1.05;
 }
 
 .post-movie-title {
@@ -114,7 +119,7 @@
 }
 
 
-/* Tablets and up */
+
 @media (min-width: 768px) {
   .post-avatar {
     width: 60px;
@@ -143,4 +148,3 @@
     flex-wrap: nowrap;
   }
 }
-

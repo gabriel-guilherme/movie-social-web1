@@ -144,14 +144,6 @@ export default function Movie() {
             <strong>Receita:</strong>{" "}
             {movie.revenue.toLocaleString("pt-BR", { style: "currency", currency: "USD" })}
           </p>
-          {movie.homepage && (
-            <p>
-              <strong>Site oficial:</strong>{" "}
-              <a href={movie.homepage} target="_blank" rel="noopener noreferrer">
-                {movie.homepage}
-              </a>
-            </p>
-          )}
           <div className="movie-overview">
             <h2>Sinopse</h2>
             <p>{movie.overview}</p>

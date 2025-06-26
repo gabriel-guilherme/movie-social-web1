@@ -5,24 +5,24 @@ ul {
 }
 
 .side-bar {
-  width: 100%; /* mobile-first: sidebar ocupa toda largura */
+  width: 100%; 
   background-color: #3a323c;
   padding: 10px;
   display: flex;
-  flex-direction: column; /* no mobile, itens podem ficar em linha (ou trocar para coluna se preferir) */
+  flex-direction: column; 
   align-items: center;
-  overflow-x: auto; /* se itens não couberem */
+  overflow-x: auto; 
   box-sizing: border-box;
 }
 
 .side-bar-content {
-  width: 100%;
+  width: 200px;
   display: flex;
-  flex-direction: column; /* mobile: linha */
+  flex-direction: column; 
   gap: 10px;
 }
 
-/* Tablets e desktop: sidebar fixa na lateral */
+
 @media (min-width: 768px) {
   .side-bar {
     width: 20%;

@@ -41,7 +41,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
     setIsLoading(true);
     setError(null);
 
-    // Validação de senha se fornecida
+   
     if (password && password !== confirmPassword) {
       setError('As senhas não coincidem');
       setIsLoading(false);
@@ -49,7 +49,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
     }
 
     try {
-      // Prepara os dados para envio
+    
       const dataToSend = new FormData();
       dataToSend.append('name', formData.name);
       dataToSend.append('username', formData.username);
@@ -72,13 +72,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
       <div className="modal-content">
         <div className="modal-header">
           <h2>Editar Perfil</h2>
-          <button 
-            className="close-button" 
-            onClick={onClose}
-            disabled={isLoading}
-          >
-            &times;
-          </button>
+  
         </div>
         
         <form onSubmit={handleSubmit} className="edit-profile-form">
@@ -146,12 +140,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
               className="save-button"
               disabled={isLoading}
             >
-              {isLoading ? (
-                <>
-                  <span className="loading-spinner"></span>
-                  Salvando...
-                </>
-              ) : 'Salvar Alterações'}
+              Salvar
             </button>
           </div>
         </form>

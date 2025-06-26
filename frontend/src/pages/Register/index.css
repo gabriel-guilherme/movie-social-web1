@@ -22,17 +22,16 @@ html {
 
 .login-layout {
   display: flex;
-  flex-direction: column; /* mobile: coluna */
+  flex-direction: column; 
   width: 100%;
-  max-width: 500px; /* mobile largura limitada */
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  background-color: #cca795 ;
   border-radius: 8px;
   overflow: hidden;
 }
 
 .left-section {
-  display: none; /* mobile: escondida */
+  display: none; 
   width: 50%;
   height: auto;
   justify-content: center;
@@ -51,8 +50,8 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #fff;
-  box-shadow: none; /* remove sombra duplicada no mobile */
+  background-color: #cca795 ;
+  box-shadow: none; 
 }
 
 .headline .title {
@@ -71,14 +70,13 @@ html {
 .input-group label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #555;
+  color: #23232e;
 }
 
 .input-group input {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
 .input-group small {
@@ -137,7 +135,7 @@ html {
   text-decoration: underline;
 }
 
-/* Tablets e desktops */
+
 @media (min-width: 768px) {
   .login-layout {
     flex-direction: row;
@@ -158,4 +156,8 @@ html {
   .headline .title {
     font-size: 28px;
   }
+}
+
+.form-header >h2 {
+ color: #23232e;
 }

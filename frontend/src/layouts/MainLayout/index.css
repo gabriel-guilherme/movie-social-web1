@@ -1,17 +1,17 @@
 #content {
   display: flex;
-  flex-direction: column; /* mobile-first */
+  flex-direction: column; 
   height: 100%;
   width: 100%;
   transition: margin-left 0.3s ease;
 }
 
-/* Estado do menu aberto (classe adicionada via JS) */
+
 #content.menu-open {
-  margin-left: 0px; /* largura aproximada do NavSideBar */
+  margin-left: 0px; 
 }
 
-/* Botão hamburguer fixo no canto superior esquerdo no mobile */
+
 .hamburger-btn {
   position: fixed;
   top: 15px;
@@ -29,7 +29,7 @@
   transition: opacity 0.3s ease;
 }
 
-/* As três barras do hamburguer */
+
 .hamburger-btn span {
   width: 30px;
   height: 3px;
@@ -38,31 +38,33 @@
   transition: all 0.3s ease;
 }
 
-/* NavSideBar oculto inicialmente no mobile */
+
 #content > .NavSideBar {
+  border-top: 10px solid #6b5258;
+  border-bottom: 10px solid #23232e;
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px; /* defina conforme a largura real do seu NavSideBar */
+  width: 100px; 
   height: 100%;
-  background-color: #3a323c; /* ajuste conforme seu design */
+  background-color: #3a323c; 
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 1000;
 }
 
-/* Quando o menu está aberto, mostra o NavSideBar */
+
 #content.menu-open > .NavSideBar {
   transform: translateX(0);
 }
 
-/* Conteúdo principal empurrado para direita quando menu aberto */
+
 #content.menu-open > :not(.NavSideBar) {
   margin-left: 250px;
   transition: margin-left 0.3s ease;
 }
 
-/* Desktop: botão escondido e NavSideBar sempre visível */
+
 @media (min-width: 768px) {
   .hamburger-btn {
     display: none;
@@ -86,7 +88,7 @@
   }
 }
 
-/* --- O resto do seu CSS original --- */
+
 .loading-container {
   display: flex;
   justify-content: center;
@@ -106,7 +108,7 @@
   }
 }
 
-/* HTML: <div class="loader"></div> */
+
 .loader {
   width: 35px;
   height: 80px;
@@ -154,7 +156,7 @@
  100%    {-webkit-mask-size: 17px 17px,17px 17px,17px 17px,17px 17px,17px 17px,17px 17px,auto}
 }
 
-/* HTML: <div class="loader"></div> */
+
 .loader2 {
   width: 35px;
   height: 80px;
@@ -215,7 +217,7 @@
  100% {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,30px 30px,25px 25px,25px 25px,25px 25px,200% 200%}
 }
 
-/* HTML: <div class="loader"></div> */
+
 .loader3 {
   width: 80px;
   height: 80px;

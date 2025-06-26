@@ -1,4 +1,4 @@
-// src/components/Register.jsx
+
 import React, { useState } from 'react';
 import useRedirectIfAuth from '../../hooks/useRedirectIfAuth';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,7 @@ export default function Register() {
     try {
         const response = await fetch('http://localhost:3001/register', {
         method: 'POST',
-        credentials: 'include', // importante para cookies de sessão
+        credentials: 'include', 
         headers: {
             'Content-Type': 'application/json',
         },
@@ -80,7 +80,7 @@ export default function Register() {
               />
             </div>
             <div className="input-group">
-              <label htmlFor="first-name">Primeiro Nome</label>
+              <label htmlFor="first-name">Nome Completo</label>
               <input
                 id="first-name"
                 name="first-name"
@@ -88,18 +88,6 @@ export default function Register() {
                 placeholder="Primeiro Nome"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="last-name">Sobrenome</label>
-              <input
-                id="last-name"
-                name="last-name"
-                type="text"
-                placeholder="Sobrenome"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
                 required
               />
             </div>
@@ -129,16 +117,6 @@ export default function Register() {
               <small>A senha deve possuir pelo menos 8 dígitos</small>
             </div>
 
-            <div className="form-options">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={remember}
-                  onChange={(e) => setRemember(e.target.checked)}
-                />
-                Lembrar
-              </label>
-            </div>
 
             <button type="submit" className="btn-login">
               Cadastrar e Entrar

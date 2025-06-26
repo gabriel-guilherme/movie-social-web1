@@ -42,13 +42,13 @@ export default function NavSideBar({ className, onClose }) {
 
   return (
     <SideBar className={`nav-side-bar ${className || ''}`}>
-      <h1>Movie<br /> &nbsp; Social</h1>
+      <h1>Movie Social</h1>
 
       <div className="nav-list">
-        <div className="nav-item" onClick={() => handleClickLink(toHome)}><FaHome />Home</div>
-        <div className="nav-item" onClick={() => handleClickLink(toCatalog)}><FaTags />Movies</div>
-        <div className="nav-item" onClick={() => handleClickLink(toProfile)}><FaUser />Profile</div>
-        <div className="nav-item" onClick={logout}><FaDoorClosed />Logout</div>
+        <div className="nav-item" onClick={() => handleClickLink(toHome)}><FaHome />Inicio</div>
+        <div className="nav-item" onClick={() => handleClickLink(toCatalog)}><FaTags />Filmes</div>
+        <div className="nav-item" onClick={() => handleClickLink(toProfile)}><FaUser />Perfil</div>
+        <div className="nav-item" onClick={logout}><FaDoorClosed />Sair</div>
       </div>
 
       <div className="nav-footer">

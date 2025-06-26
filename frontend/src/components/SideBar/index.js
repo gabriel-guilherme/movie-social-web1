@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.css"; // ou use seu CSS principal
+import "./index.css"; 
 
 export default function SideBar({ title, headerContent, footerContent, children, className = "" }) {
     return (

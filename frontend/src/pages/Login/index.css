@@ -6,22 +6,29 @@
 
 body,
 html {
+  background-color: #cca795  ;
   height: 100%;
   font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
+
+}
+
+.login-layout{
+  background-color: #cca795  ;
 }
 
 .container {
+  background-color: #cca795 ;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   padding: 10px;
   box-sizing: border-box;
-  /* Para mobile */
+
 }
 
 #background {
+  background-color: #cca795  ;
   position: absolute;
   top: 0;
   left: 0;
@@ -31,25 +38,16 @@ html {
   filter: blur(8px);
 }
 
-.login-layout {
-  display: flex;
-  flex-direction: column; /* mobile: coluna */
-  width: 100%;
-  max-width: 500px; /* mobile: limite menor */
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
 .side-image {
-  display: none; /* escondida no mobile */
-  width: 50%;
-  height: auto;
+  background-color: #cca795  ;
+  height: 100px;
+  width: auto; 
+  display: none; 
   object-fit: cover;
 }
 
 .form-container {
+  background-color: #d7c1b4;
   width: 100%;
   padding: 30px 20px;
   display: flex;
@@ -76,10 +74,14 @@ html {
 }
 
 .input-group input {
+  background-color: #ded0c7;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+}
+
+.input-group input:focus {
+  outline: 2px solid #3a323c;
 }
 
 .input-group small {
@@ -112,19 +114,20 @@ html {
 }
 
 .btn-login {
-  background-color: #007bff;
-  color: white;
+  background-color: #3a323c ;
+  color: #ded0c7;
   padding: 12px;
   border: none;
-  border-radius: 4px;
   width: 100%;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-bottom: 6px solid #23232e;
+  border-top:  6px solid #6b5258 ;
 }
 
 .btn-login:hover {
-  background-color: #0056b3;
+  background-color: #23232e;
 }
 
 .bottom-button {
@@ -134,18 +137,19 @@ html {
 
 .btn-outline {
   background-color: transparent;
-  color: #007bff;
+  color: #3a323c;
   padding: 10px 20px;
-  border: 2px solid #007bff;
-  border-radius: 4px;
+  border: 3px solid #3a323c;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .btn-outline:hover {
-  background-color: #007bff;
-  color: white;
+  border-bottom: 3px solid #23232e;
+  border-top:  3px solid #6b5258 ;
+  background-color: #3a323c;
+  color: #ded0c7;
 }
 
 #error-msg {
@@ -153,17 +157,20 @@ html {
   margin-top: 10px;
 }
 
-/* Tablets e desktops */
+
 @media (min-width: 768px) {
   .login-layout {
     flex-direction: row;
     max-width: 1000px;
+    background-color: #cca795  ;
   }
 
   .side-image {
+    background-color: #cca795  ;
     display: block;
-    width: 50%;
     height: auto;
+    height: 100vh; 
+    width: auto; 
   }
 
   .form-container {

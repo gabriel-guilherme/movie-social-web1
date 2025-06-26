@@ -44,7 +44,7 @@ export default function Profile() {
 
   const navigate = useNavigate();
 
-  // Paginação favoritos
+
   const [favPage, setFavPage] = useState(1);
   const totalFavPages = Math.ceil(movies.length / FAVORITES_LIMIT);
 
@@ -56,7 +56,7 @@ export default function Profile() {
     if (favPage < totalFavPages) setFavPage(favPage + 1);
   };
 
-  // Busca filmes assistidos no backend e detalhes na TMDB
+
   const fetchMovies = useCallback(async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/watched?userId=${user.id}`);
@@ -76,14 +76,14 @@ export default function Profile() {
       const filteredMovies = moviesData.filter(Boolean);
 
       setMovies(filteredMovies);
-      setTotalPages(1); // Sem paginação para assistidos
-      setFavPage(1); // Resetar página favoritos ao recarregar
+      setTotalPages(1); 
+      setFavPage(1);
     } catch (error) {
       console.error("Erro ao buscar filmes:", error);
     }
   }, [user.id, apiKey]);
 
-  // Busca filmes pelo nome no TMDB (busca geral)
+  
   const fetchSearch = useCallback(async () => {
     try {
       const res = await fetch(
@@ -97,7 +97,7 @@ export default function Profile() {
     }
   }, [page, debouncedQuery, apiKey]);
 
-  // Debounce para busca
+ 
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedQuery(query), 500);
     return () => clearTimeout(timer);
@@ -107,7 +107,7 @@ export default function Profile() {
     setPage(1);
   }, [debouncedQuery]);
 
-  // Decide qual fetch chamar (busca ou filmes assistidos)
+ 
   useEffect(() => {
     if (debouncedQuery !== "") {
       fetchSearch();
@@ -116,7 +116,7 @@ export default function Profile() {
     }
   }, [page, debouncedQuery, fetchMovies, fetchSearch]);
 
-  // Paginação simples para busca geral
+  
   const handlePrevious = () => {
     if (page > 1) setPage(page - 1);
   };
@@ -128,7 +128,7 @@ export default function Profile() {
     navigate(`/catalog/${movieId}`);
   };
 
-  // Busca posts do usuário com paginação infinite scroll
+ 
   const fetchUserPosts = useCallback(async () => {
     if (loading || !hasMore || !user?.id) return;
 
@@ -148,6 +148,7 @@ export default function Profile() {
         likes: dbPost.likes || 0,
         liked: dbPost.liked || false,
         time: formatTimeAgo(dbPost.createdAt),
+        movieId: dbPost.movieId || null
       }));
 
       setPosts((prev) => [...prev, ...formattedPosts]);
@@ -161,19 +162,19 @@ export default function Profile() {
     }
   }, [offset, hasMore, loading, user?.id]);
 
-  // Reset posts e paginação quando usuário muda
+
   useEffect(() => {
     setPosts([]);
     setOffset(0);
     setHasMore(true);
   }, [user?.id]);
 
-  // Busca posts iniciais quando usuário definido
+
   useEffect(() => {
     fetchUserPosts();
   }, [user?.id]);
 
-  // Infinite scroll com IntersectionObserver
+ 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -192,7 +193,7 @@ export default function Profile() {
     };
   }, [fetchUserPosts, hasMore, loading]);
 
-  // Toggle like no post
+
   const handleLikeToggle = async (postId) => {
     const index = posts.findIndex((p) => p.id === postId);
     if (index === -1) return;
@@ -228,7 +229,7 @@ export default function Profile() {
           <p>@{user?.username}</p>
           <p>{user?.email}</p>
         </div>
-        <button onClick={toggleEditModal}>Editar</button>
+        <button onClick={toggleEditModal} className="button-editar">Editar</button>
         {isEditModalOpen && <EditProfileModal user={user} onClose={toggleEditModal} />}
       </div>
 
@@ -267,14 +268,14 @@ export default function Profile() {
           </button>
         </div>
 
-        {/* Paginação só faz sentido para busca, não para assistidos */}
+      
         {debouncedQuery !== "" && (
           <div className="pagination">
-            <button onClick={handlePrevious} disabled={page === 1}>
+            <button onClick={handlePrevious} disabled={page === 1} >
               {"<"}
             </button>
             <span>{page}</span>
-            <button onClick={handleNext} disabled={page === totalPages}>
+            <button onClick={handleNext} disabled={page === totalPages} >
               {">"}
             </button>
           </div>
@@ -294,6 +295,7 @@ export default function Profile() {
               likes={post.likes}
               liked={post.liked}
               onLikeToggle={handleLikeToggle}
+              movieId={post.movieId}
             />
           ))}
         {loading && <p>Carregando...</p>}

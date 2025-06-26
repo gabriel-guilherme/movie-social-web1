@@ -1,10 +1,10 @@
-// routes/watched.js
+
 const express = require('express');
 const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Sem autenticação middleware
+
 
 router.post('/watched', async (req, res) => {
   const { userId, movieId } = req.body;
@@ -35,7 +35,7 @@ router.post('/watched', async (req, res) => {
 });
 
 router.get('/watched', async (req, res) => {
-  // Pode receber userId via query param para filtrar
+ 
   const userId = parseInt(req.query.userId);
 
   if (!userId) return res.status(400).json({ error: "userId é obrigatório" });

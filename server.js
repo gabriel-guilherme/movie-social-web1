@@ -38,7 +38,7 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-// ==================== POSTS ====================
+
 
 app.post('/posts', async (req, res) => {
   const { content, authorId } = req.body;
@@ -94,7 +94,7 @@ app.get('/posts', async (req, res) => {
   }
 });
 
-// ==================== LIKES ====================
+
 
 app.post('/posts/:id/like', async (req, res) => {
   const postId = parseInt(req.params.id);
@@ -143,7 +143,7 @@ app.delete('/posts/:id/like', async (req, res) => {
   }
 });
 
-// ==================== AUTENTICAÇÃO ====================
+
 
 app.post('/register', async (req, res) => {
   const { username, email, password, 'first-name': firstName, 'last-name': lastName, 'remember-me': remember } = req.body;

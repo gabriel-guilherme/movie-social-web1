@@ -9,13 +9,13 @@ function PostInput({ onPublish }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [movieResults, setMovieResults] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [loadingImage, setLoadingImage] = useState(false);
 
   const ignoreNextSearch = useRef(false);
 
-  
   useEffect(() => {
     if (ignoreNextSearch.current) {
-      
       ignoreNextSearch.current = false;
       return;
     }
@@ -33,7 +33,7 @@ function PostInput({ onPublish }) {
           )}&api_key=${TMDB_API_KEY}`
         );
         const data = await res.json();
-        setMovieResults(data.results.slice(0, 5)); 
+        setMovieResults(data.results.slice(0, 5));
       } catch (err) {
         console.error('Erro ao buscar filmes:', err);
       }
@@ -45,17 +45,31 @@ function PostInput({ onPublish }) {
 
   const handleMovieSelect = (movie) => {
     setSelectedMovie(movie);
-    setSearchTerm(movie.title); 
-    setMovieResults([]); 
-    ignoreNextSearch.current = true; 
+    setSearchTerm(movie.title);
+    setMovieResults([]);
+    ignoreNextSearch.current = true;
+  };
+
+  const handleCatClick = async () => {
+    try {
+      setLoadingImage(true);
+      const res = await fetch("https://api.thecatapi.com/v1/images/search");
+      const data = await res.json();
+      setImageUrl(data[0].url);
+    } catch (err) {
+      console.error("Erro ao buscar imagem de gato:", err);
+    } finally {
+      setLoadingImage(false);
+    }
   };
 
   const handlePublishClick = () => {
-    onPublish(message, selectedMovie ? selectedMovie.id : null);
+    onPublish(message, selectedMovie ? selectedMovie.id : null, imageUrl);
     setMessage('');
     setSearchTerm('');
     setSelectedMovie(null);
     setMovieResults([]);
+    setImageUrl(null);
   };
 
   return (
@@ -65,7 +79,7 @@ function PostInput({ onPublish }) {
         <div className="post-input-fields">
           <textarea
             className="post-textarea"
-            placeholder="Qual sua experiência com seu ultimo filme?"
+            placeholder="Qual sua experiência com seu último filme?"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             maxLength={600}
@@ -94,10 +108,22 @@ function PostInput({ onPublish }) {
               </ul>
             )}
           </div>
+
+          {/* Preview da imagem de gato */}
+          {imageUrl && (
+            <div className="cat-preview">
+              <img src={imageUrl} alt="Gato aleatório" />
+            </div>
+          )}
         </div>
       </div>
+
       <div className="post-input-footer">
         <div className="post-icons">
+          <button onClick={handleCatClick} title="Adicionar imagem de gato">
+            <FaRegSmile />
+          </button>
+          {loadingImage && <span style={{ fontSize: '0.8em' }}>Carregando...</span>}
         </div>
         <button className="publish-button" onClick={handlePublishClick}>
           Publicar

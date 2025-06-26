@@ -59,3 +59,12 @@
   color: #ded0c7;
   margin-right: 10px;
 }
+
+@media (max-width: 768px) {
+  .topic-side-bar ul {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+    margin-left: -45px;
+  }
+}

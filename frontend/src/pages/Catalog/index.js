@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import "./index.css";
 
+
+
 export default function Catalog() {
   const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
   const [movies, setMovies] = useState([]);
@@ -74,9 +76,7 @@ export default function Catalog() {
   return (
     <div className="catalog">
       <div className="catalog-header">
-        <h1>Catálogo</h1>
         <div className="search-div">
-          <FaSearch />
           <input
             className="search-input"
             type="text"
@@ -88,26 +88,29 @@ export default function Catalog() {
       </div>
 
       <div className="movie-grid">
-        {movies.slice(0, 12).map((movie) => (
+        {movies.slice(0, 18).map((movie) => (
           <div key={movie.id} className="movie-card" onClick={() => handleMovieClick(movie.id)}>
             <img
+              className="img-movie-card"
               src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
               alt={movie.title}
             />
             <h3>{movie.title}</h3>
           </div>
+          
         ))}
       </div>
 
-      <div className="pagination">
-        <button onClick={handlePrevious} disabled={page === 1}>
-          ← Anterior
+      <div className="pagination-m">
+        <button onClick={handlePrevious} disabled={page === 1} className="button-p">
+          {"<"}
         </button>
-        <span>Página {page}</span>
-        <button onClick={handleNext} disabled={page === totalPages}>
-          Próxima →
+        <span>{page}</span>
+        <button onClick={handleNext} disabled={page === totalPages} className="button-p">
+          {">"}
         </button>
       </div>
     </div>
+    
   );
 }

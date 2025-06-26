@@ -86,23 +86,6 @@ export default function LoginPage() {
               <small>A senha deve possuir pelo menos 8 dígitos</small>
             </div>
 
-            <div className="form-options">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={remember}
-                  onChange={(e) => setRemember(e.target.checked)}
-                />
-                Lembrar
-              </label>
-              <button
-                type="button"
-                className="link-button"
-                onClick={() => navigate('/forgot-password')}
-              >
-                Esqueceu a senha?
-              </button>
-            </div>
 
             <button type="submit" className="btn-login">Log In</button>
           </form>

@@ -7,7 +7,7 @@
 }
 
 .nav-list {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 20px;
   padding: 0;
   list-style: none;
@@ -29,9 +29,18 @@
   cursor: pointer;
   transition: 0.3s ease;
   user-select: none;
-  border-radius: 25px;
   white-space: nowrap;
   flex-shrink: 0; /* evita encolher no horizontal */
+  border-bottom: 6px solid #3a323c;
+  border-top: 6px solid #3a323c;
+}
+
+.nav-item:hover {
+  scale: 1.05;
+  background-color: #cca795;
+  color: #23232e;
+  border-bottom: 6px solid #c27f6f;
+  border-top: 6px solid #d7c1b4;
 }
 
 .nav-item svg {
@@ -39,10 +48,7 @@
   flex-shrink: 0;
 }
 
-.nav-item:hover {
-  background-color: #ded0c7;
-  color: #23232e;
-}
+
 
 h1 {
   color: #ded0c7;
@@ -75,10 +81,13 @@ h1:hover {
   h1 {
     font-size: 2rem;
     margin-left: 40px;
-    margin-bottom: 20px;
   }
 
   .side-bar-header {
     height: 0px;
   }
+}
+
+.nav-side-bar{
+  text-align: center;
 }

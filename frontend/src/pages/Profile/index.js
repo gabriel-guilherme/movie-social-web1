@@ -148,6 +148,7 @@ export default function Profile() {
         likes: dbPost.likes || 0,
         liked: dbPost.liked || false,
         time: formatTimeAgo(dbPost.createdAt),
+        movieId: dbPost.movieId || null
       }));
 
       setPosts((prev) => [...prev, ...formattedPosts]);
@@ -228,7 +229,7 @@ export default function Profile() {
           <p>@{user?.username}</p>
           <p>{user?.email}</p>
         </div>
-        <button onClick={toggleEditModal}>Editar</button>
+        <button onClick={toggleEditModal} className="button-editar">Editar</button>
         {isEditModalOpen && <EditProfileModal user={user} onClose={toggleEditModal} />}
       </div>
 
@@ -270,11 +271,11 @@ export default function Profile() {
         {/* Paginação só faz sentido para busca, não para assistidos */}
         {debouncedQuery !== "" && (
           <div className="pagination">
-            <button onClick={handlePrevious} disabled={page === 1}>
+            <button onClick={handlePrevious} disabled={page === 1} >
               {"<"}
             </button>
             <span>{page}</span>
-            <button onClick={handleNext} disabled={page === totalPages}>
+            <button onClick={handleNext} disabled={page === totalPages} >
               {">"}
             </button>
           </div>
@@ -294,6 +295,7 @@ export default function Profile() {
               likes={post.likes}
               liked={post.liked}
               onLikeToggle={handleLikeToggle}
+              movieId={post.movieId}
             />
           ))}
         {loading && <p>Carregando...</p>}

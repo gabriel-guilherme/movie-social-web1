@@ -33,10 +33,10 @@ export default function Footer() {
             <div id="footer-itens">
                 <div>
                     <p className="footer-item">Menu</p>
-                    <div onClick={toHome} className="footer-menu-link">Home</div><br/>
-                    <div onClick={toCatalog} className="footer-menu-link">Movies</div><br/>
-                    <div onClick={toProfile} className="footer-menu-link">Profile</div><br/>
-                    <div onClick={logout} className="footer-menu-link">Logout</div><br/>
+                    <div onClick={toHome} className="footer-menu-link">Inicio</div><br/>
+                    <div onClick={toCatalog} className="footer-menu-link">Filmes</div><br/>
+                    <div onClick={toProfile} className="footer-menu-link">Perfil</div><br/>
+                    <div onClick={logout} className="footer-menu-link">Sair</div><br/>
                 </div>
                 <div id="footer-dev">
                     <p className="footer-item">Desenvolvedores</p>

@@ -40,10 +40,12 @@
 
 /* NavSideBar oculto inicialmente no mobile */
 #content > .NavSideBar {
+  border-top: 10px solid #6b5258;
+  border-bottom: 10px solid #23232e;
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px; /* defina conforme a largura real do seu NavSideBar */
+  width: 100px; /* defina conforme a largura real do seu NavSideBar */
   height: 100%;
   background-color: #3a323c; /* ajuste conforme seu design */
   transform: translateX(-100%);

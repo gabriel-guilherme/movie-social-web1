@@ -16,7 +16,7 @@ ul {
 }
 
 .side-bar-content {
-  width: 100%;
+  width: 200px;
   display: flex;
   flex-direction: column; /* mobile: linha */
   gap: 10px;

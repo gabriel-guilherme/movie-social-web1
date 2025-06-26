@@ -25,8 +25,7 @@ html {
   flex-direction: column; /* mobile: coluna */
   width: 100%;
   max-width: 500px; /* mobile largura limitada */
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #cca795 ;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -51,7 +50,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #fff;
+  background-color: #cca795 ;
   box-shadow: none; /* remove sombra duplicada no mobile */
 }
 
@@ -71,14 +70,13 @@ html {
 .input-group label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #555;
+  color: #23232e;
 }
 
 .input-group input {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
 .input-group small {
@@ -158,4 +156,8 @@ html {
   .headline .title {
     font-size: 28px;
   }
+}
+
+.form-header >h2 {
+ color: #23232e;
 }

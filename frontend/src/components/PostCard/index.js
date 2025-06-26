@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaRegHeart, FaHeart, FaRocketchat, FaRegPaperPlane } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 const TMDB_API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
@@ -8,6 +9,7 @@ const TMDB_API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 function PostCard({ id, name, message, time, likes, liked, onLikeToggle, movieId }) {
   const [movie, setMovie] = useState(null);
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (!movieId) return;
 
@@ -25,8 +27,16 @@ function PostCard({ id, name, message, time, likes, liked, onLikeToggle, movieId
       }
     }
 
+
+
+
+
     fetchMovie();
   }, [movieId]);
+
+  function handleMovieClick(movieId) {
+    navigate(`/catalog/${movieId}`);
+  }
 
   return (
     <div className="post-card-container">
@@ -40,7 +50,7 @@ function PostCard({ id, name, message, time, likes, liked, onLikeToggle, movieId
             <p className="post-text">{message}</p>
 
             {movie && (
-              <div className="post-movie">
+              <div key={movieId} className="post-movie" onClick={() => handleMovieClick(movieId)}>
                 {movie.poster && (
                   <img className="post-movie-poster" src={movie.poster} alt={`Poster de ${movie.title}`} />
                 )}

@@ -71,21 +71,24 @@
 }
 
 .watch-toggle {
-  background-color: #282c34;
-  color: white;
+  background-color: #d7c1b4;
+  color: #23232e;
   border: none;
   padding: 10px 16px;
-  border-radius: 8px;
   margin: 10px 0;
   cursor: pointer;
   font-size: 1rem;
   display: flex;
   align-items: center;
   transition: background-color 0.3s;
+  border-bottom: 5px solid #cca795 ;
+  border-top:  5px solid #ded0c7 ;
 }
 
 .watch-toggle:hover {
-  background-color: #3c4048;
+  background-color: #cca795;
+    border-bottom: 5px solid #c27f6f ;
+  border-top:  5px solid #d7c1b4 ;
 }
 
 @media (max-width: 768px) {
@@ -134,4 +137,13 @@
   .movie-detail {
     padding-top: 60px;
   }
+}
+
+.movie-meta > p > strong,
+.movie-overview > h2{
+  color:#c27f6f ;
+}
+
+.movie-production > h3{
+  color:#c27f6f ;
 }

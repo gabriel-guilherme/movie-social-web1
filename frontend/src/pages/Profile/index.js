@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useUserContext } from "../../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import PostCard from "../../components/PostCard";
-import EditProfileModal from "../../components/EditProfile/index.js";
+import EditProfileModal from "../../components/EditProfile";
 import "./index.css";
 
 const API_BASE_URL = "http://localhost:3001";
@@ -24,7 +23,8 @@ function formatTimeAgo(isoDateString) {
 }
 
 export default function Profile() {
-  const user = useUserContext();
+  const { username } = useParams();
+  const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -44,20 +44,33 @@ export default function Profile() {
 
   const navigate = useNavigate();
 
-
   const [favPage, setFavPage] = useState(1);
   const totalFavPages = Math.ceil(movies.length / FAVORITES_LIMIT);
 
   const handleFavPrevious = () => {
     if (favPage > 1) setFavPage(favPage - 1);
   };
-
   const handleFavNext = () => {
     if (favPage < totalFavPages) setFavPage(favPage + 1);
   };
 
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/user?username=${username}`);
+        const data = await res.json();
+        setUser(data);
+      } catch (err) {
+        console.error("Erro ao buscar usuário:", err);
+        setError("Usuário não encontrado.");
+      }
+    };
+    fetchUser();
+  }, [username]);
+
   const fetchMovies = useCallback(async () => {
+    if (!user?.id) return;
     try {
       const res = await fetch(`${API_BASE_URL}/watched?userId=${user.id}`);
       const watchedMovies = await res.json();
@@ -73,17 +86,14 @@ export default function Profile() {
         })
       );
 
-      const filteredMovies = moviesData.filter(Boolean);
-
-      setMovies(filteredMovies);
-      setTotalPages(1); 
+      setMovies(moviesData.filter(Boolean));
+      setTotalPages(1);
       setFavPage(1);
     } catch (error) {
       console.error("Erro ao buscar filmes:", error);
     }
-  }, [user.id, apiKey]);
+  }, [user?.id, apiKey]);
 
-  
   const fetchSearch = useCallback(async () => {
     try {
       const res = await fetch(
@@ -97,7 +107,6 @@ export default function Profile() {
     }
   }, [page, debouncedQuery, apiKey]);
 
- 
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedQuery(query), 500);
     return () => clearTimeout(timer);
@@ -107,16 +116,15 @@ export default function Profile() {
     setPage(1);
   }, [debouncedQuery]);
 
- 
   useEffect(() => {
+    if (!user) return;
     if (debouncedQuery !== "") {
       fetchSearch();
     } else {
       fetchMovies();
     }
-  }, [page, debouncedQuery, fetchMovies, fetchSearch]);
+  }, [page, debouncedQuery, fetchMovies, fetchSearch, user]);
 
-  
   const handlePrevious = () => {
     if (page > 1) setPage(page - 1);
   };
@@ -128,9 +136,8 @@ export default function Profile() {
     navigate(`/catalog/${movieId}`);
   };
 
- 
   const fetchUserPosts = useCallback(async () => {
-    if (loading || !hasMore || !user?.id) return;
+    if (!user?.id || loading || !hasMore) return;
 
     try {
       setLoading(true);
@@ -156,25 +163,20 @@ export default function Profile() {
       if (data.length < LIMIT) setHasMore(false);
     } catch (err) {
       console.error("Erro ao buscar posts do usuário:", err);
-      setError("Não foi possível carregar os posts. Tente novamente mais tarde.");
+      setError("Não foi possível carregar os posts.");
     } finally {
       setLoading(false);
     }
   }, [offset, hasMore, loading, user?.id]);
 
-
   useEffect(() => {
+    if (!user?.id) return;
     setPosts([]);
     setOffset(0);
     setHasMore(true);
-  }, [user?.id]);
-
-
-  useEffect(() => {
     fetchUserPosts();
   }, [user?.id]);
 
- 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -184,15 +186,12 @@ export default function Profile() {
       },
       { threshold: 1 }
     );
-
     const currentLoader = loader.current;
     if (currentLoader) observer.observe(currentLoader);
-
     return () => {
       if (currentLoader) observer.unobserve(currentLoader);
     };
   }, [fetchUserPosts, hasMore, loading]);
-
 
   const handleLikeToggle = async (postId) => {
     const index = posts.findIndex((p) => p.id === postId);
@@ -218,6 +217,8 @@ export default function Profile() {
       console.error("Erro ao curtir/descurtir:", err);
     }
   };
+
+  if (!user) return <p>Carregando perfil...</p>;
 
   return (
     <div className="profile-page">
@@ -268,14 +269,13 @@ export default function Profile() {
           </button>
         </div>
 
-      
         {debouncedQuery !== "" && (
           <div className="pagination">
-            <button onClick={handlePrevious} disabled={page === 1} >
+            <button onClick={handlePrevious} disabled={page === 1}>
               {"<"}
             </button>
             <span>{page}</span>
-            <button onClick={handleNext} disabled={page === totalPages} >
+            <button onClick={handleNext} disabled={page === totalPages}>
               {">"}
             </button>
           </div>

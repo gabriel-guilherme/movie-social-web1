@@ -52,7 +52,7 @@ export default function NavSideBar({ className, onClose }) {
       </div>
 
       <div className="nav-footer">
-        <p>© 2023 Movie App</p>
+        
       </div>
     </SideBar>
   );

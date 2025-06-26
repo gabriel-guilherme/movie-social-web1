@@ -13,7 +13,6 @@
 .post-input-header {
   display: flex;
   gap: 12px;
-  align-items: center;
   flex-wrap: nowrap;
 }
 
@@ -27,12 +26,12 @@
   background-color: #a37370 ;
   border-radius: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: left;
   flex-shrink: 0;
 }
 
 .post-textarea {
+  background-color: #ded0c7;
   flex: 1;
   border: none;
   border-radius: 8px;
@@ -40,19 +39,17 @@
   resize: none;
   font-size: 14px;
   font-family: inherit;
-  min-height: 60px;
   box-sizing: border-box;
 }
 
 .post-textarea:focus {
-  outline: none;
+  outline: 3px solid #3a323c ;
 }
 
 .post-input-footer {
   margin-top: 12px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
   gap: 12px;
 }
@@ -140,11 +137,22 @@
 
   .post-textarea {
     font-size: 16px;
-    min-height: 80px;
+    min-height: 200px;
   }
 
   .post-input-footer {
     flex-wrap: nowrap;
     gap: 0;
   }
+}
+
+
+
+
+.movie-autocomplete > input{
+  background-color: #ded0c7 ;
+}
+
+.movie-autocomplete > input:focus{
+  outline: 3px solid #3a323c ;
 }

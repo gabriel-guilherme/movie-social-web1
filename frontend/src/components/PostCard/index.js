@@ -44,9 +44,6 @@ function PostCard({ id, name, message, time, likes, liked, onLikeToggle, movieId
                 {movie.poster && (
                   <img className="post-movie-poster" src={movie.poster} alt={`Poster de ${movie.title}`} />
                 )}
-                <p className="post-movie-title">
-                  🎬 {movie.title} {movie.year && `(${movie.year})`}
-                </p>
               </div>
             )}
           </div>
@@ -58,8 +55,7 @@ function PostCard({ id, name, message, time, likes, liked, onLikeToggle, movieId
             {liked ? <FaHeart /> : <FaRegHeart />}
           </span>
           <span style={{ cursor: 'default' }}>{likes}</span>
-          <span><FaRocketchat /></span>
-          <span><FaRegPaperPlane /></span>
+
         </div>
         <span className="post-time">{time}</span>
       </div>

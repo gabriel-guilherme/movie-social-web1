@@ -1,4 +1,6 @@
 #post-main {
+  scrollbar-width: thin; /* Para Firefox */
+  scrollbar-color: #3a323c #23232e    ; /* Para Firefox */
   height: 100%;
   overflow-y: auto;
   display: flex;

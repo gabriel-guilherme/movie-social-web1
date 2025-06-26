@@ -68,6 +68,7 @@ function PostInput({ onPublish }) {
             placeholder="What do you want to talk about?"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            maxLength={600}
           />
           <div className="movie-autocomplete">
             <input
@@ -97,18 +98,6 @@ function PostInput({ onPublish }) {
       </div>
       <div className="post-input-footer">
         <div className="post-icons">
-          <span>
-            <FaCamera />
-          </span>
-          <span>
-            <FaVideo />
-          </span>
-          <span>
-            <FaMicrophone />
-          </span>
-          <span>
-            <FaRegSmile />
-          </span>
         </div>
         <button className="publish-button" onClick={handlePublishClick}>
           Publicar

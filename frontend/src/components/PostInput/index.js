@@ -13,7 +13,7 @@ function PostInput({ onPublish }) {
   return (
     <div className="post-input-container">
       <div className="post-input-header">
-        <div className="avatar">👤</div>
+        <div className="avatar"></div>
         <textarea
           className="post-textarea"
           placeholder="What do you want to talk about?"

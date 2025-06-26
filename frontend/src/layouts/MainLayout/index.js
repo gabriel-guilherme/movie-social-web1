@@ -35,6 +35,7 @@ export default function MainLayout() {
     <div className="loading-container">
       <div className="loader"></div>
       <div className="loader2"></div>
+      <div className="loader3"></div>
     </div>
   );
 

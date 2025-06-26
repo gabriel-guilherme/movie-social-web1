@@ -6,7 +6,7 @@ function PostCard({ id, name, message, time, likes, liked, onLikeToggle }) {
   return (
     <div className="post-card-container">
       <div className="post-card-header">
-        <div className="post-avatar">👤</div>
+        <div className="post-avatar"></div>
         <div className="post-content">
           <strong className="post-name">{name}</strong>
           <p className="post-text">{message}</p>
@@ -14,7 +14,7 @@ function PostCard({ id, name, message, time, likes, liked, onLikeToggle }) {
       </div>
       <div className="post-card-footer">
         <div className="post-icons">
-          <span onClick={() => onLikeToggle(id)} style={{ cursor: 'pointer', color: liked ? 'red' : 'inherit' }}>
+          <span onClick={() => onLikeToggle(id)} style={{ cursor: 'pointer', color: liked ? '#23232e ' : 'inherit' }}>
             {liked ? <FaHeart /> : <FaRegHeart />}
           </span>
           <span style={{ cursor: "default" }}>{likes}</span>

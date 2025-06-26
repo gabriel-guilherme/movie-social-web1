@@ -46,6 +46,7 @@ router.get('/posts', async (req, res) => {
       likes: post.likes,
       liked: post.likedBy.length > 0,
       movieId: post.movieId,
+      authorId: post.authorId,
     }));
 
     res.json(result);

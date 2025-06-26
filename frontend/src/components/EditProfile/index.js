@@ -41,7 +41,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
     setIsLoading(true);
     setError(null);
 
-    // Validação de senha se fornecida
+   
     if (password && password !== confirmPassword) {
       setError('As senhas não coincidem');
       setIsLoading(false);
@@ -49,7 +49,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
     }
 
     try {
-      // Prepara os dados para envio
+    
       const dataToSend = new FormData();
       dataToSend.append('name', formData.name);
       dataToSend.append('username', formData.username);

@@ -1,5 +1,5 @@
 .profile-page{
-    width: 100%; /* 100% da largura da viewport */
+    width: 100%; 
     background-color: #d7c1b4;
     display: grid;
     column-gap: 50px;
@@ -41,13 +41,13 @@
     overflow-y: auto;
     max-height: 350px;
 
-     /* Personalização da barra */
+    
     direction: rtl;
-    scrollbar-width: thin; /* Para Firefox */
-    scrollbar-color: #3a323c #3a323c00 ; /* Para Firefox */
+    scrollbar-width: thin; 
+    scrollbar-color: #3a323c #3a323c00 ;
 }
 
-/* Reverte o conteúdo para o fluxo normal (LTR) */
+
 .user-posts > * {
     direction: ltr;
 }

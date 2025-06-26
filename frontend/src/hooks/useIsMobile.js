@@ -1,4 +1,4 @@
-// src/hooks/Auth.jsx
+
 import { useEffect, useState } from 'react';
 
 export default function useIsMobile() {

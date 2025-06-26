@@ -22,16 +22,16 @@ html {
 
 .login-layout {
   display: flex;
-  flex-direction: column; /* mobile: coluna */
+  flex-direction: column; 
   width: 100%;
-  max-width: 500px; /* mobile largura limitada */
+  max-width: 500px;
   background-color: #cca795 ;
   border-radius: 8px;
   overflow: hidden;
 }
 
 .left-section {
-  display: none; /* mobile: escondida */
+  display: none; 
   width: 50%;
   height: auto;
   justify-content: center;
@@ -51,7 +51,7 @@ html {
   flex-direction: column;
   justify-content: center;
   background-color: #cca795 ;
-  box-shadow: none; /* remove sombra duplicada no mobile */
+  box-shadow: none; 
 }
 
 .headline .title {
@@ -135,7 +135,7 @@ html {
   text-decoration: underline;
 }
 
-/* Tablets e desktops */
+
 @media (min-width: 768px) {
   .login-layout {
     flex-direction: row;

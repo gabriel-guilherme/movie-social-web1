@@ -51,7 +51,7 @@ export default function TopicSideBar() {
   <SideBar className="topic-side-bar">
     <h2>Mais Comentados</h2>
     <ul>
-      {topMovies.map((movie, index) => ( // Adicione 'index' para numerar
+      {topMovies.map((movie, index) => ( 
         <li key={movie.id} className="movie-item">
           <div className="movie-card-top" onClick={() => handleMovieClick(movie.id)}>
             <img 

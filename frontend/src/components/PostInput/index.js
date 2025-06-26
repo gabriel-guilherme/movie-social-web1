@@ -12,10 +12,10 @@ function PostInput({ onPublish }) {
 
   const ignoreNextSearch = useRef(false);
 
-  // Busca filmes conforme o usuário digita
+  
   useEffect(() => {
     if (ignoreNextSearch.current) {
-      // Ignora essa execução do efeito pois veio de seleção
+      
       ignoreNextSearch.current = false;
       return;
     }
@@ -33,7 +33,7 @@ function PostInput({ onPublish }) {
           )}&api_key=${TMDB_API_KEY}`
         );
         const data = await res.json();
-        setMovieResults(data.results.slice(0, 5)); // mostra só os 5 primeiros
+        setMovieResults(data.results.slice(0, 5)); 
       } catch (err) {
         console.error('Erro ao buscar filmes:', err);
       }
@@ -45,9 +45,9 @@ function PostInput({ onPublish }) {
 
   const handleMovieSelect = (movie) => {
     setSelectedMovie(movie);
-    setSearchTerm(movie.title); // mostra o nome no input
-    setMovieResults([]); // esconde sugestões
-    ignoreNextSearch.current = true; // evita busca logo após seleção
+    setSearchTerm(movie.title); 
+    setMovieResults([]); 
+    ignoreNextSearch.current = true; 
   };
 
   const handlePublishClick = () => {

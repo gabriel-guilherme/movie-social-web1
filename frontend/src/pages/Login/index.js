@@ -1,4 +1,4 @@
-// src/components/LoginPage.jsx
+
 import React, { useState } from 'react';
 import useRedirectIfAuth from '../../hooks/useRedirectIfAuth';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,7 @@ export default function LoginPage() {
         headers: {
           'Content-Type': 'application/json'
         },
-        credentials: 'include', // MUITO IMPORTANTE para enviar cookies/sessões
+        credentials: 'include', 
         body: JSON.stringify({ email, password, remember })
       });
 

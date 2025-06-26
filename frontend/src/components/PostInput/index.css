@@ -6,7 +6,7 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   margin-top: 5%;
-  /* mobile-first */
+ 
 
   border-bottom: 6px solid #3a323c ;
   border-top: 6px solid #a37370 ;
@@ -130,7 +130,7 @@
   background-color: #d7c1b4;
 }
 
-/* Tablets e desktops */
+
 @media (min-width: 768px) {
   .avatar {
     width: 48px;

@@ -24,7 +24,7 @@ html {
   height: 100%;
   padding: 10px;
   box-sizing: border-box;
-  /* Para mobile */
+
 }
 
 #background {
@@ -40,9 +40,9 @@ html {
 
 .side-image {
   background-color: #cca795  ;
-  height: 100px; /* 100% da altura da tela */
-  width: auto; /* Mantém a proporção */
-  display: none; /* escondida no mobile */
+  height: 100px;
+  width: auto; 
+  display: none; 
   object-fit: cover;
 }
 
@@ -157,7 +157,7 @@ html {
   margin-top: 10px;
 }
 
-/* Tablets e desktops */
+
 @media (min-width: 768px) {
   .login-layout {
     flex-direction: row;
@@ -169,8 +169,8 @@ html {
     background-color: #cca795  ;
     display: block;
     height: auto;
-    height: 100vh; /* 100% da altura da tela */
-    width: auto; /* Mantém a proporção */
+    height: 100vh; 
+    width: auto; 
   }
 
   .form-container {

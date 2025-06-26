@@ -1,6 +1,6 @@
 .catalog {
   width: auto;
-  /*min-width: 60%;*/
+ 
   padding: 10px 0px;
   font-family: Arial, sans-serif;
   background-color: #ded0c7;
@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
 
-  scrollbar-color: #cca795  #d7c1b4    ; /* Para Firefox */
+  scrollbar-color: #cca795  #d7c1b4    ; 
 }
 
 
@@ -164,7 +164,7 @@
 @media (max-width: 768px) {
   
   .catalog .movie-card {
-    width: 110px; /* Aumenta a largura dos cards no desktop */
+    width: 110px; 
   }
   .catalog-header {
     width: 100%;

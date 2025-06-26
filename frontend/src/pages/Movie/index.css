@@ -110,7 +110,7 @@
 
   .movie-meta p {
     margin: 6px 0;
-    white-space: normal; /* garante que o texto quebra em várias linhas se precisar */
+    white-space: normal; 
   }
 
   .movie-overview {

@@ -1,4 +1,4 @@
-// src/components/Register.jsx
+
 import React, { useState } from 'react';
 import useRedirectIfAuth from '../../hooks/useRedirectIfAuth';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,7 @@ export default function Register() {
     try {
         const response = await fetch('http://localhost:3001/register', {
         method: 'POST',
-        credentials: 'include', // importante para cookies de sessão
+        credentials: 'include', 
         headers: {
             'Content-Type': 'application/json',
         },

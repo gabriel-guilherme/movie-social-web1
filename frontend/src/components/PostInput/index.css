@@ -1,5 +1,5 @@
 .post-input-container {
-  background-color: #6b5258;
+  background-color: #6b5258 ;
   padding: 16px;
   border-radius: 8px;
   width: 100%;
@@ -17,10 +17,14 @@
   flex-wrap: nowrap;
 }
 
+.post-input-header > textarea{
+  background-color: #ded0c7;
+}
+
 .avatar {
-  width: 40px;
-  height: 40px;
-  background-color: white;
+  width: 50px;
+  height: 50px;
+  background-color: #a37370 ;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -62,7 +66,7 @@
 }
 
 .publish-button {
-  background-color: #fcd535;
+  background-color: #a37370 ;
   color: white;
   border: none;
   padding: 8px 20px;
@@ -74,7 +78,7 @@
 }
 
 .publish-button:hover {
-  background-color: #e4b900;
+  background-color: #a37370 ;
 }
 
 /* Tablets e desktops */

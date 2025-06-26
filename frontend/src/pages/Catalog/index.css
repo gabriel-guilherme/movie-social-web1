@@ -73,6 +73,7 @@
     justify-content: center;
     /*height: 85%;*/
     overflow-y: auto;
+    margin-right: 100px;
 }
 
 .catalog .movie-card {

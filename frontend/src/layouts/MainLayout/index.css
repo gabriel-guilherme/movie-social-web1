@@ -40,6 +40,7 @@
 
 
 #content > .NavSideBar {
+  margin-left: 50px;
   border-top: 10px solid #6b5258;
   border-bottom: 10px solid #23232e;
   position: fixed;

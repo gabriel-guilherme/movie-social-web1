@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaCamera, FaVideo, FaMicrophone, FaRegSmile } from 'react-icons/fa';
+import { FaCamera, FaVideo, FaMicrophone, FaRegSmile, FaCat } from 'react-icons/fa';
 import './index.css';
 
 const TMDB_API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
@@ -109,7 +109,6 @@ function PostInput({ onPublish }) {
             )}
           </div>
 
-          {/* Preview da imagem de gato */}
           {imageUrl && (
             <div className="cat-preview">
               <img src={imageUrl} alt="Gato aleatório" />
@@ -121,7 +120,7 @@ function PostInput({ onPublish }) {
       <div className="post-input-footer">
         <div className="post-icons">
           <button onClick={handleCatClick} title="Adicionar imagem de gato">
-            <FaRegSmile />
+            <FaCat />
           </button>
           {loadingImage && <span style={{ fontSize: '0.8em' }}>Carregando...</span>}
         </div>

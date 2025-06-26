@@ -17,7 +17,7 @@ export default function Movie() {
   const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
   const API_BASE_URL = "http://localhost:3001";
 
-  const handleBackClick = () => navigate("/catalog");
+  const handleBackClick = () => navigate(-1);
 
   const user = useUserContext();
   const userId = user?.id;

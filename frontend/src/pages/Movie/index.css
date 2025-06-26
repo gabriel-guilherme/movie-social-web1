@@ -1,50 +1,119 @@
 .movie-detail {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #1c1c1c;
-  color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.movie-detail h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.movie-detail img {
-  display: block;
-  max-width: 300px;
+  margin: auto;
+  margin-left: auto;
+  padding: 20px;
+  color: #ded0c7;
+  font-family: Arial, sans-serif;
+  background: #23232e;
+  height: 100%;
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin: 0 auto 1.5rem auto;
+  overflow: auto;
 }
 
-.movie-detail p {
-  line-height: 1.6;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+.back-button {
+  font-size: 40px;
+  cursor: pointer;
 }
 
-.movie-detail strong {
-  color: #ffcc00;
+.back-button:hover {
+  color: #cca795;
 }
 
-/* Responsivo */
-@media (max-width: 600px) {
+.movie-info {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.movie-info img {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.movie-meta {
+  flex: 1;
+  font-size: 1rem;
+}
+
+.movie-overview {
+  margin-top: 20px;
+}
+
+.movie-production {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  align-items: center;
+}
+
+.movie-production ul {
+  list-style: none;
+  padding: 0;
+}
+
+.movie-production li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.movie-production h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.production-companies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+@media (max-width: 768px) {
+  .movie-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .movie-info img {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .movie-meta {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .movie-meta p {
+    margin: 6px 0;
+    white-space: normal; /* garante que o texto quebra em várias linhas se precisar */
+  }
+
+  .movie-overview {
+    padding: 0 10px;
+    text-align: justify;
+  }
+
+  .movie-production {
+    gap: 40px;
+    padding: 10px;
+  }
+
+  .production-companies {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .movie-production li {
+    flex-direction: column;
+    text-align: center;
+    max-width: 120px;
+  }
+
   .movie-detail {
-    padding: 1rem;
-  }
-
-  .movie-detail h1 {
-    font-size: 1.6rem;
-  }
-
-  .movie-detail p {
-    font-size: 1rem;
+    padding-top: 60px;
   }
 }

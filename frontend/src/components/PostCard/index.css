@@ -1,13 +1,13 @@
 .post-card-container {
   width: 100%;
   max-width: 1500px;
-  background-color: #e8f0fe;
+  background-color: #23232e;
   padding: 16px;
   border-radius: 12px;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   margin: 16px 0;
-  /* mobile-first */
+  color: white;
 }
 
 .post-card-header {
@@ -38,7 +38,7 @@
   margin-bottom: 4px;
   font-weight: bold;
   font-size: 1rem;
-  color: #333;
+  color: #ded0c7;
 }
 
 .post-text {

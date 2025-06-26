@@ -43,13 +43,19 @@
 .post-text {
   width: 100%;
   white-space: pre-wrap;
-  word-wrap: break-word;
+  word-wrap: anywhere;
   max-height: 100px;
   overflow-y: auto;
   padding-right: 5px;
+  height: auto;
   
   scrollbar-width: none;    /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+}
+
+.post-text-movie {
+  display: flex;
+  flex-direction: column;
 }
 
 .post-text::-webkit-scrollbar {
@@ -77,12 +83,56 @@
   white-space: nowrap;
 }
 
+.post-movie {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.post-movie-poster {
+  max-width: 200px;
+  width: 15%;
+  border-radius: 6px;
+  margin-top: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.post-movie-title {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #444;
+}
+
+.post-name-link {
+  text-decoration: none;
+  color: black;
+}
+
+.post-name-link:hover {
+  text-decoration: underline;
+}
+
+
 /* Tablets and up */
 @media (min-width: 768px) {
   .post-avatar {
     width: 60px;
     height: 60px;
     font-size: 28px;
+  }
+
+  .post-movie-poster {
+    max-width: 200px;
+    width: 50%;
+    border-radius: 6px;
+    margin-top: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .post-text-movie {
+    display: flex;
+    flex-direction: row;
   }
   
   .post-name {
@@ -94,17 +144,3 @@
   }
 }
 
-/* Larger desktops */
-@media (min-width: 1024px) {
-  .post-card-container {
-    padding: 24px;
-  }
-
-  .post-name {
-    font-size: 1.25rem;
-  }
-
-  .post-icons span {
-    font-size: 20px;
-  }
-}

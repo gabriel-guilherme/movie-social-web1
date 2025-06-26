@@ -1,3 +1,29 @@
-.topic-side-bar{
-    transition: transform 0.3s ease;
+.topic-side-bar {
+  color: #f0f0f0;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  display: flex;
+  gap: 10%;
 }
+
+.topic-side-bar h2,
+.topic-side-bar .sidebar-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.topic-side-bar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topic-side-bar li {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #dcdcdc;
+}
+

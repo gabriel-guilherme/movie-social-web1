@@ -1,23 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegHeart, FaHeart, FaRocketchat, FaRegPaperPlane } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import './index.css';
 
-function PostCard({ id, name, message, time, likes, liked, onLikeToggle }) {
+const TMDB_API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
+
+function PostCard({ id, name, message, time, likes, liked, onLikeToggle, movieId }) {
+  const [movie, setMovie] = useState(null);
+
+  useEffect(() => {
+    if (!movieId) return;
+
+    async function fetchMovie() {
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`);
+        const data = await res.json();
+        setMovie({
+          title: data.title,
+          year: data.release_date?.slice(0, 4),
+          poster: data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : null
+        });
+      } catch (err) {
+        console.error('Erro ao buscar filme:', err);
+      }
+    }
+
+    fetchMovie();
+  }, [movieId]);
+
   return (
     <div className="post-card-container">
       <div className="post-card-header">
         <div className="post-avatar"></div>
         <div className="post-content">
-          <strong className="post-name">{name}</strong>
-          <p className="post-text">{message}</p>
+          <Link to={`/profile/${name}`} className="post-name-link">
+            <strong className="post-name">{name}</strong>
+          </Link>
+          <div className='post-text-movie'>
+            <p className="post-text">{message}</p>
+
+            {movie && (
+              <div className="post-movie">
+                {movie.poster && (
+                  <img className="post-movie-poster" src={movie.poster} alt={`Poster de ${movie.title}`} />
+                )}
+                <p className="post-movie-title">
+                  🎬 {movie.title} {movie.year && `(${movie.year})`}
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="post-card-footer">
         <div className="post-icons">
-          <span onClick={() => onLikeToggle(id)} style={{ cursor: 'pointer', color: liked ? '#23232e ' : 'inherit' }}>
+          <span onClick={() => onLikeToggle(id)} style={{ cursor: 'pointer', color: liked ? '#23232e' : 'inherit' }}>
             {liked ? <FaHeart /> : <FaRegHeart />}
           </span>
-          <span style={{ cursor: "default" }}>{likes}</span>
+          <span style={{ cursor: 'default' }}>{likes}</span>
           <span><FaRocketchat /></span>
           <span><FaRegPaperPlane /></span>
         </div>

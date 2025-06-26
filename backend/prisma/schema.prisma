@@ -14,19 +14,20 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id        Int            @id @default(autoincrement())
   name      String
-  email     String    @unique
-  username  String    @unique
+  email     String         @unique
+  username  String         @unique
   password  String
-  createdAt DateTime  @default(now())
+  createdAt DateTime       @default(now())
   posts     Post[]
   likes     Like[]
+  watchedMovies WatchedMovie[]
 }
 
 model Post {
   id        Int       @id @default(autoincrement())
-  tag       String?
+  movieId   Int?
   content   String?
   likes     Int       @default(0)
   author    User      @relation(fields: [authorId], references: [id])
@@ -43,4 +44,14 @@ model Like {
   postId  Int
 
   @@unique([userId, postId])
+}
+
+model WatchedMovie {
+  id        Int      @id @default(autoincrement())
+  movieId   Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  watchedAt DateTime @default(now())
+
+  @@unique([userId, movieId])
 }

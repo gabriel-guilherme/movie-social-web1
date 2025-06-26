@@ -49,7 +49,8 @@ export default function Home() {
         message: dbPost.content,
         likes: dbPost.likes || 0,
         liked: dbPost.liked || false,
-        time: formatTimeAgo(dbPost.createdAt)
+        time: formatTimeAgo(dbPost.createdAt),
+        movieId: dbPost.movieId || null,
       }));
 
       setPosts(prev => [...prev, ...formattedPosts]);
@@ -86,7 +87,7 @@ export default function Home() {
     };
   }, [fetchPosts, hasMore, loading]);
 
-  const handlePublish = async (message) => {
+  const handlePublish = async (message, movieId) => {
     if (message.trim() === '') return;
 
     try {
@@ -95,7 +96,8 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           content: message,
-          authorId: user.id
+          authorId: user.id,
+          movieId: movieId ? parseInt(movieId) : null
         }),
       });
 
@@ -108,11 +110,11 @@ export default function Home() {
         message: newPost.content,
         likes: 0,
         liked: false,
-        time: formatTimeAgo(newPost.createdAt)
+        time: formatTimeAgo(newPost.createdAt),
+        movieId: newPost.movieId,
       };
 
       setPosts(prev => {
-        // Filtra qualquer post com o mesmo ID antes de adicionar
         const filtered = prev.filter(p => p.id !== formattedNewPost.id);
         return [formattedNewPost, ...filtered];
       });
@@ -161,6 +163,7 @@ export default function Home() {
           likes={post.likes}
           liked={post.liked}
           onLikeToggle={handleLikeToggle}
+          movieId={post.movieId}
         />
       ))}
       {loading && <p>Carregando...</p>}

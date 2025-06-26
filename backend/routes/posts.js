@@ -5,57 +5,55 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 router.post('/posts', async (req, res) => {
-  const { content, authorId } = req.body;
+  const { content, authorId, movieId } = req.body;
 
   try {
     const newPost = await prisma.post.create({
       data: {
         content,
-        author: { connect: { id: authorId } },
-        likes: 0
-      }
+        authorId,
+        movieId: movieId || null,
+      },
     });
-    res.status(201).json(newPost);
-  } catch (error) {
-    console.error('Erro ao criar post:', error);
-    res.status(500).json({ error: 'Erro ao criar post.' });
+    res.json(newPost);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro ao criar post." });
   }
 });
 
 router.get('/posts', async (req, res) => {
-  const limit = parseInt(req.query.limit) || 10;
-  const offset = parseInt(req.query.offset) || 0;
-  const userId = parseInt(req.query.userId);
+  const { limit = 10, offset = 0, userId } = req.query;
 
   try {
     const posts = await prisma.post.findMany({
-      skip: offset,
-      take: limit,
+      skip: parseInt(offset),
+      take: parseInt(limit),
+      orderBy: { createdAt: 'desc' },
       include: {
         author: true,
         likedBy: {
-          where: { userId },
-          select: { userId: true }
-        }
+          where: { userId: parseInt(userId) },
+        },
       },
-      orderBy: { createdAt: 'desc' }
     });
 
-    const formatted = posts.map(post => ({
+    const result = posts.map(post => ({
       id: post.id,
-      authorId: post.authorId,
-      name: post.author.username,
       content: post.content,
-      likes: post.likes,
+      name: post.author.username,
       createdAt: post.createdAt,
-      liked: post.likedBy.length > 0
+      likes: post.likes,
+      liked: post.likedBy.length > 0,
+      movieId: post.movieId,
     }));
 
-    res.json(formatted);
-  } catch (error) {
-    console.error('Erro ao buscar posts:', error);
-    res.status(500).json({ error: 'Erro ao buscar posts.' });
+    res.json(result);
+  } catch (err) {
+    console.error("Erro ao buscar posts:", err);
+    res.status(500).json({ error: "Erro ao buscar posts." });
   }
 });
+
 
 module.exports = router;

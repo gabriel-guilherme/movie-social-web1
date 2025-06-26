@@ -65,7 +65,7 @@ function PostInput({ onPublish }) {
         <div className="post-input-fields">
           <textarea
             className="post-textarea"
-            placeholder="What do you want to talk about?"
+            placeholder="Qual sua experiência com seu ultimo filme?"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             maxLength={600}
